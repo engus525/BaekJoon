@@ -24,29 +24,21 @@ void SOLVE()
 {
     // Init
     dp[1][walk[1].first] = walk[1].second;
-    dp[1][bike[1].first] = bike[1].second;
+    dp[1][bike[1].first] = max(dp[1][bike[1].first],bike[1].second);
 
-    for(int i = 1; i <= n; i++)
-    {
-        for(int j = 0; j <= k; j++)
-        {
+    for(int i = 2; i <= n; i++)
+        for(int j = 1; j <= k; j++)
             if(dp[i-1][j])
             {
                 if(j + walk[i].first <= k)
-                {
                     dp[i][j + walk[i].first] =
                             max(dp[i][j + walk[i].first], dp[i-1][j] + walk[i].second);
-                }
                 if(j + bike[i].first <= k)
-                {
                     dp[i][j + bike[i].first] =
                             max(dp[i][j + bike[i].first], dp[i - 1][j] + bike[i].second);
-                }
             }
-        }
-    }
 
-    int ans = -1;
+    int ans = 0;
     for(int i = 1; i <= k; i++) ans = max(ans,dp[n][i]);
     cout << ans;
 }
