@@ -1,7 +1,6 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <map>
 using namespace std;
 
 typedef pair<int,int> pii;
@@ -24,11 +23,12 @@ void INPUT()
 void SOLVE()
 {
     // Init
-    if(walk[1].first  <= k) dp[1][walk[1].first] = walk[1].second;
-    if(bike[1].first  <= k) dp[1][bike[1].first] = bike[1].second;
-    for(int i = 2; i <= n; i++)
+    dp[1][walk[1].first] = walk[1].second;
+    dp[1][bike[1].first] = bike[1].second;
+
+    for(int i = 1; i <= n; i++)
     {
-        for(int j = 1; j <= k; j++)
+        for(int j = 0; j <= k; j++)
         {
             if(dp[i-1][j])
             {
@@ -46,7 +46,7 @@ void SOLVE()
         }
     }
 
-    int ans = 0;
+    int ans = -1;
     for(int i = 1; i <= k; i++) ans = max(ans,dp[n][i]);
     cout << ans;
 }
