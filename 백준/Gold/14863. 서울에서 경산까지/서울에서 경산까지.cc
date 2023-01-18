@@ -23,10 +23,9 @@ void INPUT()
 void SOLVE()
 {
     // Init
-    dp[1][walk[1].first] = walk[1].second;
-    dp[1][bike[1].first] = bike[1].second;
-
-    for(int i = 1; i <= n; i++)
+    if(walk[1].first  <= k) dp[1][walk[1].first] = walk[1].second;
+    if(bike[1].first  <= k) dp[1][bike[1].first] = bike[1].second;
+    for(int i = 2; i <= n; i++)
     {
         for(int j = 0; j <= k; j++)
         {
@@ -46,7 +45,7 @@ void SOLVE()
         }
     }
 
-    int ans = -1;
+    int ans = 0;
     for(int i = 1; i <= k; i++) ans = max(ans,dp[n][i]);
     cout << ans;
 }
