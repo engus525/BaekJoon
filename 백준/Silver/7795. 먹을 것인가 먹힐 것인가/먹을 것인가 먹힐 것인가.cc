@@ -6,6 +6,8 @@ using namespace std;
 int t,a,b;
 vector<int> A,B;
 
+int x;
+
 void INPUT()
 {
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
@@ -19,16 +21,8 @@ void SOLVE()
     {
         //Input
         cin >> a >> b;
-        for(int i = 0; i < a; i++)
-        {
-            int ai; cin >> ai;
-            A.push_back(ai);
-        }
-        for(int i = 0; i < b; i++)
-        {
-            int bi; cin >> bi;
-            B.push_back(bi);
-        }
+        for(int i = 0; i < a; i++) cin >> x , A.push_back(x);
+        for(int i = 0; i < b; i++) cin >> x , B.push_back(x);
 
         //이분탐색 위해 정렬
         sort(A.begin(),A.end());
@@ -49,6 +43,7 @@ void SOLVE()
                 else right = mid - 1;
             }
 
+            //idx가 -1이라면 , ans += a;
             ans += (a-1) - idx;
         }
 
