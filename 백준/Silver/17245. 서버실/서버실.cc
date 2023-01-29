@@ -7,7 +7,7 @@ typedef long long ll;
 ll n;
 ll server[1001][1001];
 ll Max = -1;
-ll total,half;
+ll total;
 
 void INPUT()
 {
@@ -23,7 +23,6 @@ void INPUT()
 
 void SOLVE()
 {
-    half = floor(double(total)/2 + 0.5);
 
     ll left = 0,right = Max;
 
@@ -37,8 +36,7 @@ void SOLVE()
             for(int j = 0; j < n; j++)
                 cnt += min(server[i][j],mid);
 
-        //siba 나한테 왜 그래? sasj;djdajvㅇㄴㅇ내ㅐ가 무뭘 잘못했는데 어?
-        if(cnt >= half) ans = mid , right = mid - 1;
+        if(2*cnt >= total) ans = mid , right = mid - 1;
         else left = mid + 1;
     }
 
