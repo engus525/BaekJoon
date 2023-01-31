@@ -24,7 +24,6 @@ void SOLVE()
     while(!q.empty())
     {
         int D = damage[idx] - damage[max(0,idx-Ml)];
-        //cout << damage[idx] << " " << damage[max(0,idx-Ml)] << '\n';
         //맨 앞의 좀비가 기관총으로 죽는다면
         if(q.front() <= D)
         {
@@ -36,10 +35,9 @@ void SOLVE()
         else
         {
             //지뢰가 남았다면
-            if(c)
+            if(c--)
             {
                 q.pop();
-                c--;
                 damage[idx + 1] = damage[idx];
                 idx++;
             }
