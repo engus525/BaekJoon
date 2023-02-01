@@ -5,7 +5,7 @@ using namespace std;
 int n;
 int h[80001];
 
-typedef long long ll;
+typedef long long ll;//답의 최댓값 : 79999+79998+ ~~ + 0 = (79999*40000)
 stack<pair<int,ll>> s;//{건물의 높이,볼 수 있는 옥상의 수}
 
 void INPUT()
