@@ -47,70 +47,54 @@ void Parsing()
     }num.push_back(stoll(token));
 }
 
+ll calc(ll a, ll b, char c)
+{
+    switch(c)
+    {
+        case '*' : return a*b;
+        case '/' : return a/b;
+        case '+' : return a+b;
+        case '-' : return a-b;
+    }
+}
+
 void SOLVE()
 {
     Parsing();
-    if(oper.empty()) cout << num[0];
 
-    /*for(int i = 0; i < num.size(); i++)
-        cout << num[i] << " ";
-    cout << '\n';
-    while(!oper.empty())
-        cout << oper.front() << " " , oper.pop_front();
-    cout << '\n';*/
+    //연산자가 없는 경우
+    if(oper.empty()) cout << num[0];
 
     ll left = 0 , right = num.size()-1;
     while(!oper.empty())
     {
+        //마지막 연산
         if(oper.size() == 1)
         {
-            ll ans;
-            if(oper.front()=='*') ans = num[left]*num[left+1];
-            else if(oper.front()=='/') ans = num[left]/num[left+1];
-            else if(oper.front()=='+') ans = num[left]+num[left+1];
-            else if(oper.front()=='-') ans = num[left]-num[left+1];
-            oper.pop_front();
+            ll ans = calc(num[left],num[left+1],oper.front());
             cout << ans;
             return;
         }
+
         //왼쪽의 우선순위가 높은 경우
         if(oper1(oper.front()) && oper2(oper.back()))
         {
-            if(oper.front() == '*')
-                num[left+1] = num[left]*num[left+1],
-                left++,
-                oper.pop_front();
-            else
-                num[left+1] = num[left]/num[left+1],
-                left++,
-                oper.pop_front();
+            num[left+1] = calc(num[left],num[left+1],oper.front());
+            left++;
+            oper.pop_front();
         }
         //오른쪽의 우선순위가 높은 경우
         else if(oper2(oper.front()) && oper1(oper.back()))
         {
-            if(oper.back() == '*')
-                num[right-1] = num[right-1]*num[right],
-                        right--,
-                        oper.pop_back();
-            else
-                num[right-1] = num[right-1]/num[right],
-                        right--,
-                        oper.pop_back();
+            num[right-1] = calc(num[right-1],num[right],oper.back());
+            right--;
+            oper.pop_back();
         }
         //우선순위 같은 경우
-        else if((oper1(oper.front())&&oper1(oper.back()))||
-                (oper2(oper.front())&&oper2(oper.back())))
+        else
         {
-            ll tempL,tempR;
-            if(oper.front()=='*') tempL = num[left]*num[left+1];
-            else if(oper.front()=='/') tempL = num[left]/num[left+1];
-            else if(oper.front()=='+') tempL = num[left]+num[left+1];
-            else if(oper.front()=='-') tempL = num[left]-num[left+1];
-
-            if(oper.back()=='*') tempR = num[right-1]*num[right];
-            else if(oper.back()=='/') tempR = num[right-1]/num[right];
-            else if(oper.back()=='+') tempR = num[right-1]+num[right];
-            else if(oper.back()=='-') tempR = num[right-1]-num[right];
+            ll tempL = calc(num[left],num[left+1],oper.front());
+            ll tempR = calc(num[right-1],num[right],oper.back());
 
             //앞의 연산값이 크거나 같은 경우 앞에 먼저
             if(tempL >= tempR)
