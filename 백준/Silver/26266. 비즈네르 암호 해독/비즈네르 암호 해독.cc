@@ -5,6 +5,8 @@ using namespace std;
 string str, pw;
 string key = "";
 
+string ans;
+
 void INPUT()
 {
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
@@ -20,9 +22,6 @@ void SOLVE()
         if (keyInt < 1) keyInt += 26;
         key += char(keyInt + 'A' - 1);
     }
-
-    string ans;
-    if(key.length() == 1) ans = key;
 
     for (int i = 1; i <= key.length(); i++)
     {
