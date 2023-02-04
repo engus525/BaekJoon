@@ -22,11 +22,7 @@ void SOLVE()
     int ans = 0;
     while (q.size())
     {
-        if(q.size() == 1)
-        {
-            ans += 0;
-            break;
-        }
+        if(q.size() == 1) break;
 
         int first = q.top(); q.pop();
         int second = q.top(); q.pop();
