@@ -1,34 +1,44 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
+#include <queue>
 using namespace std;
 
-int N;
-priority_queue<int, vector<int>, greater<int>> Q;
+int n;
+priority_queue<int, vector<int>, greater<int>> q;
 
-int main() {ios_base::sync_with_stdio(false); cout.tie(NULL); cin.tie(NULL);
-
-cin >> N;
-// 정렬된 묶음이 한개만 들어오면 비교할 필요 없다.
-if (N == 1) {
-	cout << 0 << '\n';
-	return 0;
+void INPUT()
+{
+    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    cin >> n;
+    for (int i = 1; i <= n; i++)
+    {
+        int size; cin >> size;
+        q.push(size);
+    }
 }
 
-for (int i = 0; i < N; ++i) {
-	int a;
-	cin >> a;
-	Q.push(a);
-}
-int ans = 0;
-// 최대한 작은 애들을 먼저 묶는다.
-while (Q.size() > 1) {
-	int a = Q.top();
-	Q.pop();
-	int b = Q.top();
-	Q.pop();
-	ans += a + b;
-	Q.push(a + b);
-}
-cout << ans << '\n';
+void SOLVE()
+{
+    int ans = 0;
+    while (q.size())
+    {
+        if(q.size() == 1)
+        {
+            ans += 0;
+            break;
+        }
 
-return 0;
+        int first = q.top(); q.pop();
+        int second = q.top(); q.pop();
+
+        ans += first + second;
+        q.push(first + second);
+    }
+    cout << ans;
+}
+
+int main()
+{
+    INPUT();
+    SOLVE();
 }
