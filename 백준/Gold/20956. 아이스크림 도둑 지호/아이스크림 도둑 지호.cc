@@ -22,11 +22,11 @@ bool isReversed = false;
 
 void INPUT()
 {
-    //ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-    scanf("%d %d",&n,&m);
+    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    cin >> n >> m;
     for(int i = 1; i <= n; i++)
     {
-        scanf("%d", &A);
+        cin >> A;
         minHeap.push({A,i});
         maxHeap.push({A,i});
     }
@@ -41,7 +41,7 @@ void SOLVE()
         {
             while(visited[maxHeap.top().second]) maxHeap.pop();
             if(maxHeap.top().first % 7 == 0) isReversed = !isReversed;
-            printf("%d\n",maxHeap.top().second);
+            cout << maxHeap.top().second << '\n';
             visited[maxHeap.top().second] = true;
             maxHeap.pop();
         }
@@ -49,7 +49,7 @@ void SOLVE()
         {
             while(visited[minHeap.top().second]) minHeap.pop();
             if(minHeap.top().first % 7 == 0) isReversed = !isReversed;
-            printf("%d\n",minHeap.top().second);
+            cout << minHeap.top().second << '\n';
             visited[minHeap.top().second] = true;
             minHeap.pop();
         }
