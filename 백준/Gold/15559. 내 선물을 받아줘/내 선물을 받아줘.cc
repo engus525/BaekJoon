@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <memory.h>
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 
@@ -10,7 +9,8 @@ int map[1001][1001];
 
 typedef pair<int,int> pii;
 pii dir[4] = {{0,1},{0,-1},{1,0},{-1,0}};//E W S N
-int visited[1001][1001]; int cnt = 1;
+int visited[1001][1001];
+int cnt = 1;
 
 void INPUT()
 {
@@ -40,15 +40,10 @@ int DFS(int x,int y)
 	int ny = y+dir[map[x][y]].second;
 
 	if(!visited[nx][ny])
-	{
 		visited[x][y] = min(visited[nx][ny],DFS(nx,ny));
-		return visited[x][y];
-	}
-	else
-	{
-		visited[x][y] = min(visited[x][y],visited[nx][ny]);
-		return visited[x][y];
-	}
+	else visited[x][y] = visited[nx][ny];
+	
+	return visited[x][y];
 }
 
 void SOLVE()
