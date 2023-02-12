@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <queue>
 using namespace std;
@@ -7,9 +6,7 @@ const int MAX = 100'000;
 
 int n, k;
 bool visited[100'001];
-queue<pair<int, int>> q; // <좌표, 초>
-
-int ans = 2e9;
+queue<pair<int, int>> q;//<좌표, 초>
 
 void INPUT()
 {
@@ -19,7 +16,7 @@ void INPUT()
 
 int BFS()
 {
-	q.push(make_pair(n, 0));
+	q.push({n,0});
 	visited[n] = true;
 
 	while (!q.empty())
@@ -28,11 +25,7 @@ int BFS()
 		int second = q.front().second;
         q.pop();
         
-		if (now == k)
-		{
-			ans = second;
-			return ans;
-		}
+		if (now == k) return second;
 
 		if (now + 1 <= MAX && !visited[now + 1])
 		{
