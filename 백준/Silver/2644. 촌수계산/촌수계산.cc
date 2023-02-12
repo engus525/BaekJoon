@@ -1,52 +1,51 @@
 #include <iostream>
 #include <queue>
+#include <vector>
 using namespace std;
+#define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 
 int n, x, y, m;
-int map[101][101];
-bool visited[101];
-int depth[101];
+vector<int> graph[101];
+int visited[101];
 
 void INPUT()
 {
-	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	IAMFAST
 	cin >> n >> x >> y >> m;
 	for (int i = 0; i < m; i++)
 	{
 		int a, b; cin >> a >> b;
-		map[a][b] = map[b][a] = 1;
+		graph[a].push_back(b);
+		graph[b].push_back(a);
 	}
 }
 
-void BFS(int node)
+void BFS()
 {
 	queue<int> q;
-	q.push(node);
-
-	visited[node] = true;
+	q.push(x);
 
 	while (!q.empty())
 	{
 		int now = q.front();
 		q.pop();
 
-		for (int i = 1; i <= n; i++)
+		for (int i = 0; i < graph[now].size(); i++)
 		{
-			if (!visited[i] && map[now][i] == 1)
-			{
-				visited[i] = true;
-				depth[i] = depth[now] + 1;
-				q.push(i);
-			}
+			int next = graph[now][i];
+			if(visited[next]) continue;
+
+			visited[next] = visited[now] + 1;
+			q.push(next);
 		}
 	}
 }
 
 void SOLVE()
 {
-	BFS(x);
+	BFS();
 
-	if (depth[y] != 0) cout << depth[y];
+	if (visited[y]) cout << visited[y];
 	else cout << -1;
 }
 
