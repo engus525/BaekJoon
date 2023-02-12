@@ -126,33 +126,7 @@ pii DFS(int x,int y,int color)
 	return {size,rainbow};
 }
 
-void printQ()
-{
-	priority_queue<Block,vector<Block>,comp> q;
-	while(!pq.empty())
-	{
-		cout << pq.top().standard.first << "," << pq.top().standard.second << " "
-		<< pq.top().size << '\n';
-		q.push(pq.top());
-		pq.pop();
-	}
-	while(!q.empty()) pq.push(q.top()),q.pop();
-}
 
-void print2d()
-{
-	for(int i = 1; i <= n; i++)
-	{
-		for (int j = 1; j <= n; j++)
-		{
-			if(map[i][j] == -1e9) cout << "X" << " ";
-			else if(map[i][j] == -1) cout << "-" << " ";
-			else cout << map[i][j] << " ";
-		}
-		cout << '\n';
-	}
-
-}
 void SOLVE()
 {
 	int ans = 0;
@@ -172,7 +146,6 @@ void SOLVE()
 							if(map[a][b] == 0) visited[a][b] = false;
 				}
 		if(pq.empty()) break;
-		//printQ();
 
 		memset(visited,false,sizeof visited);
 		ans += pq.top().size * pq.top().size;
@@ -180,14 +153,9 @@ void SOLVE()
 		while(!pq.empty()) pq.pop();
 		memset(visited,false,sizeof visited);
 
-		//print2d();
-
 		Gravity();
-		//cout << "\n중력1-------------\n"; print2d();
 		Turn();
-		//cout << "\n회전-------------\n"; print2d();
 		Gravity();
-		//cout << "\n중력2-------------\n"; print2d();
 	}
 	cout << ans;
 }
