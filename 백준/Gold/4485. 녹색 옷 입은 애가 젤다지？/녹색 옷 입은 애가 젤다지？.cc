@@ -14,6 +14,24 @@ pii dir[4] = {{-1,0},
 			  {0,-1},
 			  {0,1}};
 int dist[126][126];
+struct Pos
+{
+	int rupee;
+	int x;
+	int y;
+};
+struct comp
+{
+	bool operator()(Pos a,Pos b)
+	{
+		if(a.rupee==b.rupee)
+		{
+			if(a.x==b.x) return a.y < b.y;
+			return a.x < b.x;
+		}
+		return a.rupee < b.rupee;
+	};
+};
 
 void INPUT()
 {
@@ -22,24 +40,6 @@ void INPUT()
 
 void ijk()
 {
-	struct Pos
-	{
-		int rupee;
-		int x;
-		int y;
-	};
-	struct comp
-	{
-		bool operator()(Pos a,Pos b)
-		{
-			if(a.rupee==b.rupee)
-			{
-				if(a.x==b.x) return a.y < b.y;
-				return a.x < b.x;
-			}
-			return a.rupee < b.rupee;
-		};
-	};
 	priority_queue<Pos,vector<Pos>,comp> pq;
 	pq.push({ -map[0][0],0,0 });
 	dist[0][0] = map[0][0];
