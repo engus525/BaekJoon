@@ -32,16 +32,9 @@ double Distance(pdd a, pdd b)
 {
 	double first = pow(abs(a.first-b.first),2);
 	double second = pow(abs(a.second-b.second),2);
-	//cout << first << " " << second << '\n';
 	return sqrt(first + second);
 }
 
-void printDist()
-{
-	for(int i = 1; i <= n; i++)
-		cout << dist[i] << " ";
-	cout <<'\n';
-}
 
 void ijk()
 {
@@ -69,12 +62,8 @@ void ijk()
 			if(now == next) continue;
 			if(d2 > m) continue;
 			if(dist[next] <= d1+d2) continue;
-
-
+			
 			dist[next] = d1 + d2;
-			//cout << now << " -> " << next << '\n';
-			//cout << d1 << " , " << d2 << '\n';
-			//printDist();
 			pq.push({ -dist[i], i });
 		}
 	}
