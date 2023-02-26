@@ -20,7 +20,6 @@ void INPUT()
 
 string MIN(string a,string b)
 {
-
     if(a.length() == b.length())
         for(int i = 0; i < a.length(); i++)
         {
@@ -35,17 +34,15 @@ string MIN(string a,string b)
 void SOLVE()
 {
     //Init
-    maxDP[1] = "";
+    minDP[1] = "1"; maxDP[1] = "";
     for(int i = 2; i <= 7; i++)
     {
         minDP[i] = number[i];
         if(i % 2 == 0) maxDP[i] = maxDP[i-1] + "1" , maxDP[i][0] = '1';
         else maxDP[i] = maxDP[i-1] , maxDP[i][0] = '7';
     }
-    minDP[8] = "10"; maxDP[8] = "1111";
 
-
-    for(int i = 9; i <= 100; i++)
+    for(int i = 8; i <= 100; i++)
     {
         minDP[i] = "99999999999999999999";
         for(int j = 2; j <= 7; j++)
