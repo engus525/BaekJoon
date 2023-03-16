@@ -7,8 +7,8 @@ using namespace std;
 
 int n,m,k;
 typedef pair<int,int> pii;
-vector<pii> graph[305];
-int dp[305][305];
+vector<pii> graph[301];
+int dp[301][301];
 
 void INPUT()
 {
@@ -24,16 +24,13 @@ void INPUT()
 void SOLVE()
 {
     //Init
-    for(int i = 1; i <= n+1; i++)
-        for(int j = 1; j <= n+1; j++)
-            dp[i][j] = -1;
-
+    memset(dp,-1,sizeof dp);
     for(int i = 0; i < graph[1].size(); i++)
         dp[graph[1][i].first][2] =
                 max(dp[graph[1][i].first][2],graph[1][i].second);
 
     //DP
-    for(int cnt = 2; cnt <= m; cnt++)
+    for(int cnt = 2; cnt < m; cnt++)
     {
         for(int now = 1; now <= n; now++)
         {
