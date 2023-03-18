@@ -1,14 +1,5 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <iostream> // cpp
-#include <stdio.h> // c
-#include <string>
-#include <memory.h> // memset
+#include <iostream>
 #include <algorithm>
-// 자료 구조
-#include <queue>
-#include <vector>
-#include <stack>
-#include <set>
 using namespace std;
 
 int n, m;
@@ -24,23 +15,17 @@ void INPUT()
 			cin >> map[i][j];
 }
 
-
 void SOLVE()
 {
-
 	for (int i = 1; i <= n; i++)
-	{
 		for (int j = 1; j <= m; j++)
-		{
 			dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + map[i][j];
-		}
-	}
+
 	cout << dp[n][m];
 }
 
 int main()
 {
 	INPUT();
-
 	SOLVE();
 }
