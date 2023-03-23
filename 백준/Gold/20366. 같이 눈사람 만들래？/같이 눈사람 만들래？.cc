@@ -42,7 +42,6 @@ void SOLVE()
             if(v[snow1].x == v[snow2].x) continue;
             if(v[snow1].y == v[snow2].y) continue;
             if(v[snow1].y == v[snow2].x) continue;
-            if(v[snow2].y == v[snow1].x) continue;
 
             ans = min(ans,v[snow2].sum-v[snow1].sum);
             break;
