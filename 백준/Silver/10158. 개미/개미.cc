@@ -1,13 +1,8 @@
 #include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
 #include <cmath>
-#include <math.h>
 using namespace std;
 
 int w, h, p, q, t;
-
 
 int main() {
 
