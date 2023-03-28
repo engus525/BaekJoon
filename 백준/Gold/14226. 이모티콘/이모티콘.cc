@@ -12,7 +12,7 @@ struct EMOJI
     int clip;
     int t;
 };
-bool visited[1501][1501];
+bool visited[1201][1201];
 
 void INPUT()
 {
@@ -42,7 +42,7 @@ void BFS()
             q.push({num,num,t+1}),
             visited[num][num] = true;
 
-        if(num+clip <= 1500 && clip && !visited[num+clip][clip])
+        if(num+clip <= 1200 && clip && !visited[num+clip][clip])
             q.push({num+clip, clip, t+1}),
             visited[clip+num][0] = true;
 
