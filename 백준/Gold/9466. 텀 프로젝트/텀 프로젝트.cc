@@ -7,7 +7,6 @@ int t,n;
 int li[100001];
 bool visited[100001];
 bool ban[100001];
-int cnt = 0;
 
 void INPUT()
 {
@@ -15,19 +14,22 @@ void INPUT()
     cin >> t;
 }
 
-void DFS(int now)
+int DFS(int now)
 {
+    int ret = 0;
+
     visited[now] = true;
 
-    if(!visited[li[now]]) DFS(li[now]);
+    if(!visited[li[now]]) ret = DFS(li[now]);
     else if(visited[li[now]] && !ban[li[now]])
     {
-        cnt++;
+        ret++;
         for(int i = li[now]; i != now; i = li[i])
-            cnt++;
+            ret++;
     }
 
     ban[now] = true;
+    return ret;
 }
 
 void SOLVE()
@@ -40,9 +42,9 @@ void SOLVE()
             visited[i] = false,
             ban[i] = false;
 
-        cnt = 0;
+        int cnt = 0;
         for(int i = 1; i <= n; i++)
-            if(!visited[i]) DFS(i);
+            if(!visited[i]) cnt += DFS(i);
         cout << n - cnt << '\n';
     }
 }
