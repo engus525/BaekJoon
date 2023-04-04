@@ -14,31 +14,16 @@ void INPUT()
     cin >> n;
 }
 
-void eratos()
-{
-    notPrime[1] = true;
-    for(int i = 2; i*i <= n; i++)
-        for(int j = i*i; j <= n; j += i)
-            notPrime[j] = true;
-}
-
 void SOLVE()
 {
-    eratos();
-    for(int i = 2; i <= n; i++)
-        if(!notPrime[i]) prime.push_back(i);
-
-    while(n)
+    while (n != 1)
     {
-        if(n == 1) break;
-        for(auto i : prime)
+        for (int i = 2; i <= n; i++)
         {
-            if(n%i == 0)
-            {
-                cout << i << '\n';
-                n /= i;
-                break;
-            }
+            if(n%i) continue;
+            cout << i << '\n';
+            n /= i;
+            break;
         }
     }
 }
