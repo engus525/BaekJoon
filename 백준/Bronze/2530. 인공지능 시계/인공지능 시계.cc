@@ -13,22 +13,7 @@ void INPUT()
 
 void SOLVE()
 {
-    int mod = d % 60;
-    c += mod;
-    b += c/60; c %= 60;
-    a += b/60; b %= 60;
-    a %= 24;
-    d /= 60;
-
-    mod = d % 60;
-    b += mod;
-    a += b/60; b %= 60;
-    a %= 24;
-    d /= 60;
-
-    a += d; a %= 24;
-
-    cout << a << " " << b << " " << c;
+    cout << (a+(b+(c+d)/60)/60)%24 << " " <<(b+(c+d)/60)%60 << " " << (c+d)%60;
 }
 
 int main()
