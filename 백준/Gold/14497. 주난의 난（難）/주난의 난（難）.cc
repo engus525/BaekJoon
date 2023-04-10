@@ -1,6 +1,7 @@
 #include <iostream>
 #include <queue>
 #include <algorithm>
+#include <ctime>
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
@@ -24,22 +25,23 @@ void INPUT()
             scanf("%1s", &map[i][j]);
 }
 
-int BFS()
+void BFS()
 {
     int ans = 2e9;
-    queue<pii> q;
-    q.push(start);
+    deque<pii> dq;
+    dq.push_front(start);
     visited[start.first][start.second] = 1;
 
-    while(!q.empty())
+    while(!dq.empty())
     {
-        int x = q.front().first;
-        int y = q.front().second;
-        q.pop();
+        int x = dq.front().first;
+        int y = dq.front().second;
+        dq.pop_front();
 
         if(x==target.first && y==target.second)
         {
-            ans = min(ans,visited[x][y]);
+            cout << visited[x][y]-1;
+            return;
         }
 
         for(int i = 0; i < 4; i++)
@@ -47,25 +49,22 @@ int BFS()
             int nx = x + dir[i].first;
             int ny = y + dir[i].second;
             if(nx<1 || n<nx || ny<1 || m<ny) continue;
-            //if(visited[nx][ny]) continue;
+            if(visited[nx][ny]) continue;
 
-            if(map[nx][ny] == '0' &&
-            (visited[nx][ny] == 0 || visited[x][y] < visited[nx][ny]))
+            if(map[nx][ny] == '0')
                 visited[nx][ny] = visited[x][y],
-                q.push({nx,ny});
-            else if(map[nx][ny] != '0' &&
-            (visited[nx][ny] == 0 || visited[x][y]+1 < visited[nx][ny]))
+                dq.push_front({nx,ny});
+            else if(map[nx][ny] != '0')
                 visited[nx][ny] = visited[x][y] + 1,
-                q.push({nx,ny});
+                dq.push_back({nx,ny});
 
         }
     }
-    return ans-1;
 }
 
 void SOLVE()
 {
-    cout << BFS();
+    BFS();
 }
 
 int main()
