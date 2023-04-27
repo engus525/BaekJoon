@@ -6,50 +6,26 @@ using namespace std;
 
 int n;
 int L[21], J[21];
-bool visited[21];
-int ans = 0;
+int dp[21][101];
 
 void INPUT()
 {
     IAMFAST
     cin >> n;
-    for(int i = 0; i < n; i++) cin >> L[i];
-    for(int i = 0; i < n; i++) cin >> J[i];
+    for(int i = 1; i <= n; i++) cin >> L[i];
+    for(int i = 1; i <= n; i++) cin >> J[i];
 }
 
-void setAns()
-{
-    int temp = 0;
-    for(int i = 0; i <= n; i++)
-        if(visited[i])
-            temp += J[i];
-    ans = max(ans,temp);
-}
-
-void setComb(int now, int target, int start, int stamina)
-{
-    if(now == target)
-    {
-        setAns();
-        return;
-    }
-
-    for(int i = start; i <= n; i++)
-    {
-        int nextStamina = stamina - L[i];
-        if(nextStamina <= 0) continue;
-
-        visited[i] = true;
-        setComb(now+1,target,i+1,nextStamina);
-        visited[i] = false;
-    }
-}
 
 void SOLVE()
 {
     for(int i = 1; i <= n; i++)
-        setComb(0,i,0,100);
-    cout << ans;
+        for(int j = 1; j < 100; j++)
+        {
+            if(j < L[i]) dp[i][j] = dp[i-1][j];
+            else dp[i][j] = max(dp[i-1][j], dp[i-1][j-L[i]]+J[i]);
+        }
+    cout << dp[n][99];
 }
 
 int main()
