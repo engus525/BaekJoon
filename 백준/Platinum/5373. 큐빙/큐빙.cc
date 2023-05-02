@@ -3,6 +3,8 @@
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+#define forx for(int x = 0; x < 3; x++)
+#define fory for(int y = 0; y < 3; y++)
 
 int t,n;
 string mov;
@@ -18,9 +20,7 @@ void Init()
 {
     char color[6] = {'w','y','r','o','g','b'};
     for(int i = 0; i < 6; i++)
-        for(int x = 0; x < 3; x++)
-            for(int y = 0; y < 3; y++)
-                cube[i][x][y] = color[i];
+        forx fory cube[i][x][y] = color[i];
 }
 
 void U(char dir)
@@ -28,19 +28,19 @@ void U(char dir)
     int temp[3];
     if(dir == '+')
     {
-        for(int i = 0; i < 3; i++) temp[i] = cube[2][0][i];
-        for(int i = 0; i < 3; i++) cube[2][0][2-i] = cube[5][i][0];
-        for(int i = 0; i < 3; i++) cube[5][i][0] = cube[3][2][i];
-        for(int i = 0; i < 3; i++) cube[3][2][i] = cube[4][2-i][2];
-        for(int i = 0; i < 3; i++) cube[4][2-i][2] = temp[2-i];
+        forx temp[x] = cube[2][0][x];
+        forx cube[2][0][2-x] = cube[5][x][0];
+        forx cube[5][x][0] = cube[3][2][x];
+        forx cube[3][2][x] = cube[4][2-x][2];
+        forx cube[4][2-x][2] = temp[2-x];
     }
     else
     {
-        for(int i = 0; i < 3; i++) temp[i] = cube[2][0][i];
-        for(int i = 0; i < 3; i++) cube[2][0][2-i] = cube[4][2-i][2];
-        for(int i = 0; i < 3; i++) cube[4][2-i][2] = cube[3][2][i];
-        for(int i = 0; i < 3; i++) cube[3][2][i] = cube[5][i][0];
-        for(int i = 0; i < 3; i++) cube[5][i][0] = temp[2-i];
+        forx temp[x] = cube[2][0][x];
+        forx cube[2][0][2-x] = cube[4][2-x][2];
+        forx cube[4][2-x][2] = cube[3][2][x];
+        forx cube[3][2][x] = cube[5][x][0];
+        forx cube[5][x][0] = temp[2-x];
     }
 }
 void D(char dir)
@@ -48,19 +48,19 @@ void D(char dir)
     int temp[3];
     if(dir == '+')
     {
-        for(int i = 0; i < 3; i++) temp[i] = cube[3][0][i];
-        for(int i = 0; i < 3; i++) cube[3][0][2-i] = cube[5][2-i][2];
-        for(int i = 0; i < 3; i++) cube[5][2-i][2] = cube[2][2][i];
-        for(int i = 0; i < 3; i++) cube[2][2][i] = cube[4][i][0];
-        for(int i = 0; i < 3; i++) cube[4][i][0] = temp[2-i];
+        forx temp[x] = cube[3][0][x];
+        forx cube[3][0][2-x] = cube[5][2-x][2];
+        forx cube[5][2-x][2] = cube[2][2][x];
+        forx cube[2][2][x] = cube[4][x][0];
+        forx cube[4][x][0] = temp[2-x];
     }
     else
     {
-        for(int i = 0; i < 3; i++) temp[i] = cube[3][0][i];
-        for(int i = 0; i < 3; i++) cube[3][0][2-i] = cube[4][i][0];
-        for(int i = 0; i < 3; i++) cube[4][i][0] = cube[2][2][i];
-        for(int i = 0; i < 3; i++) cube[2][2][i] = cube[5][2-i][2];
-        for(int i = 0; i < 3; i++) cube[5][2-i][2] = temp[2-i];
+        forx temp[x] = cube[3][0][x];
+        forx cube[3][0][2-x] = cube[4][x][0];
+        forx cube[4][x][0] = cube[2][2][x];
+        forx cube[2][2][x] = cube[5][2-x][2];
+        forx cube[5][2-x][2] = temp[2-x];
     }
 }
 void F(char dir)
@@ -68,19 +68,19 @@ void F(char dir)
     int temp[3];
     if(dir == '+')
     {
-        for(int i = 0; i < 3; i++) temp[i] = cube[4][2][i];
-        for(int i = 0; i < 3; i++) cube[4][2][i] = cube[1][0][2-i];
-        for(int i = 0; i < 3; i++) cube[1][0][2-i] = cube[5][2][i];
-        for(int i = 0; i < 3; i++) cube[5][2][i] = cube[0][2][i];
-        for(int i = 0; i < 3; i++) cube[0][2][i] = temp[i];
+        forx temp[x] = cube[4][2][x];
+        forx cube[4][2][x] = cube[1][0][2-x];
+        forx cube[1][0][2-x] = cube[5][2][x];
+        forx cube[5][2][x] = cube[0][2][x];
+        forx cube[0][2][x] = temp[x];
     }
     else
     {
-        for(int i = 0; i < 3; i++) temp[i] = cube[4][2][i];
-        for(int i = 0; i < 3; i++) cube[4][2][i] = cube[0][2][i];
-        for(int i = 0; i < 3; i++) cube[0][2][i] = cube[5][2][i];
-        for(int i = 0; i < 3; i++) cube[5][2][i] = cube[1][0][2-i];
-        for(int i = 0; i < 3; i++) cube[1][0][2-i] = temp[i];
+        forx temp[x] = cube[4][2][x];
+        forx cube[4][2][x] = cube[0][2][x];
+        forx cube[0][2][x] = cube[5][2][x];
+        forx cube[5][2][x] = cube[1][0][2-x];
+        forx cube[1][0][2-x] = temp[x];
     }
 }
 void B(char dir)
@@ -88,19 +88,19 @@ void B(char dir)
     int temp[3];
     if(dir == '+')
     {
-        for(int i = 0; i < 3; i++) temp[i] = cube[5][0][i];
-        for(int i = 0; i < 3; i++) cube[5][0][2-i] = cube[1][2][i];
-        for(int i = 0; i < 3; i++) cube[1][2][i] = cube[4][0][2-i];
-        for(int i = 0; i < 3; i++) cube[4][0][2-i] = cube[0][0][2-i];
-        for(int i = 0; i < 3; i++) cube[0][0][2-i] = temp[2-i];
+        forx temp[x] = cube[5][0][x];
+        forx cube[5][0][2-x] = cube[1][2][x];
+        forx cube[1][2][x] = cube[4][0][2-x];
+        forx cube[4][0][2-x] = cube[0][0][2-x];
+        forx cube[0][0][2-x] = temp[2-x];
     }
     else
     {
-        for(int i = 0; i < 3; i++) temp[i] = cube[5][0][i];
-        for(int i = 0; i < 3; i++) cube[5][0][2-i] = cube[0][0][2-i];
-        for(int i = 0; i < 3; i++) cube[0][0][2-i] = cube[4][0][2-i];
-        for(int i = 0; i < 3; i++) cube[4][0][2-i] = cube[1][2][i];
-        for(int i = 0; i < 3; i++) cube[1][2][i] = temp[2-i];
+        forx temp[x] = cube[5][0][x];
+        forx cube[5][0][2-x] = cube[0][0][2-x];
+        forx cube[0][0][2-x] = cube[4][0][2-x];
+        forx cube[4][0][2-x] = cube[1][2][x];
+        forx cube[1][2][x] = temp[2-x];
     }
 }
 void L(char dir)
@@ -108,19 +108,19 @@ void L(char dir)
     int temp[3];
     if(dir == '+')
     {
-        for(int i = 0; i < 3; i++) temp[i] = cube[3][i][0];
-        for(int i = 0; i < 3; i++) cube[3][i][0] = cube[1][i][0];
-        for(int i = 0; i < 3; i++) cube[1][i][0] = cube[2][i][0];
-        for(int i = 0; i < 3; i++) cube[2][i][0] = cube[0][i][0];
-        for(int i = 0; i < 3; i++) cube[0][i][0] = temp[i];
+        forx temp[x] = cube[3][x][0];
+        forx cube[3][x][0] = cube[1][x][0];
+        forx cube[1][x][0] = cube[2][x][0];
+        forx cube[2][x][0] = cube[0][x][0];
+        forx cube[0][x][0] = temp[x];
     }
     else
     {
-        for(int i = 0; i < 3; i++) temp[i] = cube[3][i][0];
-        for(int i = 0; i < 3; i++) cube[3][i][0] = cube[0][i][0];
-        for(int i = 0; i < 3; i++) cube[0][i][0] = cube[2][i][0];
-        for(int i = 0; i < 3; i++) cube[2][i][0] = cube[1][i][0];
-        for(int i = 0; i < 3; i++) cube[1][i][0] = temp[i];
+        forx temp[x] = cube[3][x][0];
+        forx cube[3][x][0] = cube[0][x][0];
+        forx cube[0][x][0] = cube[2][x][0];
+        forx cube[2][x][0] = cube[1][x][0];
+        forx cube[1][x][0] = temp[x];
     }
 }
 void R(char dir)
@@ -128,49 +128,39 @@ void R(char dir)
     int temp[3];
     if(dir == '+')
     {
-        for(int i = 0; i < 3; i++) temp[i] = cube[2][i][2];
-        for(int i = 0; i < 3; i++) cube[2][2-i][2] = cube[1][2-i][2];
-        for(int i = 0; i < 3; i++) cube[1][2-i][2] = cube[3][2-i][2];
-        for(int i = 0; i < 3; i++) cube[3][2-i][2] = cube[0][2-i][2];
-        for(int i = 0; i < 3; i++) cube[0][2-i][2] = temp[2-i];
+        forx temp[x] = cube[2][x][2];
+        forx cube[2][2-x][2] = *&cube[1][2-x][2];
+        forx cube[1][2-x][2] = cube[3][2-x][2];
+        forx cube[3][2-x][2] = cube[0][2-x][2];
+        forx cube[0][2-x][2] = temp[2-x];
     }
     else
     {
-        for(int i = 0; i < 3; i++) temp[i] = cube[2][i][2];
-        for(int i = 0; i < 3; i++) cube[2][2-i][2] = cube[0][2-i][2];
-        for(int i = 0; i < 3; i++) cube[0][2-i][2] = cube[3][2-i][2];
-        for(int i = 0; i < 3; i++) cube[3][2-i][2] = cube[1][2-i][2];
-        for(int i = 0; i < 3; i++) cube[1][2-i][2] = temp[2-i];
+        forx temp[x] = cube[2][x][2];
+        forx cube[2][2-x][2] = cube[0][2-x][2];
+        forx cube[0][2-x][2] = cube[3][2-x][2];
+        forx cube[3][2-x][2] = cube[1][2-x][2];
+        forx cube[1][2-x][2] = temp[2-x];
     }
 }
 
 void Turn(char pos, char dir)
 {
     char temp[3][3];
-    for(int x = 0; x < 3; x++)
-        for (int y = 0; y < 3; y++)
-            temp[x][y] = cube[pos][x][y];
+    forx fory temp[x][y] = cube[pos][x][y];
 
-    if(dir == '+')
-    {
-        for(int x = 0; x < 3; x++)
-            for (int y = 0; y < 3; y++)
-                cube[pos][y][2-x] = temp[x][y];
-    }
-    else
-    {
-        for(int x = 0; x < 3; x++)
-            for (int y = 0; y < 3; y++)
-                cube[pos][2-y][x] = temp[x][y];
-    }
+    forx fory
+        {
+            if (dir=='+') cube[pos][y][2 - x] = temp[x][y];
+            else cube[pos][2-y][x] = temp[x][y];
+        }
 }
 
 void Ans()
 {
-    for(int x = 0; x < 3; x++)
+    forx
     {
-        for (int y = 0; y < 3; y++)
-            cout << cube[0][x][y];
+        fory cout << cube[0][x][y];
         cout << '\n';
     }
 }
