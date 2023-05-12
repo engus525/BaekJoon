@@ -27,7 +27,7 @@ void INPUT()
 
 vector<int> ijk()
 {
-	fill(dist+1,dist+n+1,2e9);
+	fill(dist+1,dist+n+1,1e9);
 	priority_queue<pair<pii,vector<int>>> pq;
 	pq.push({{0,s},{s}});
 	dist[s] = 0;
