@@ -32,12 +32,12 @@ bool BFS()
         if(visited[x][y]) continue;
         visited[x][y] = true;
 
-        if((x != 2*y) && y && (x > y)) q.push({x-y,y+y,z});
-        if((y != 2*x) && x && (x < y)) q.push({x+x,y-x,z});
-        if((y != 2*z) && z && (y > z)) q.push({x,y-z,z+z});
-        if((z != 2*y) && y && (y < z)) q.push({x,y+y,z-y});
-        if((z != 2*x) && x && (z > x)) q.push({x+x,y,z-x});
-        if((x != 2*z) && z && (z < x)) q.push({x-z,y,z+z});
+        if((x != 2*y) && (x > y)) q.push({x-y,y+y,z});
+        if((y != 2*x) && (x < y)) q.push({x+x,y-x,z});
+        if((y != 2*z) && (y > z)) q.push({x,y-z,z+z});
+        if((z != 2*y) && (y < z)) q.push({x,y+y,z-y});
+        if((z != 2*x) && (z > x)) q.push({x+x,y,z-x});
+        if((x != 2*z) && (z < x)) q.push({x-z,y,z+z});
     }
     return false;
 }
