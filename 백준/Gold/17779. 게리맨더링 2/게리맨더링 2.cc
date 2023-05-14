@@ -117,9 +117,9 @@ void calcNum(int x, int y, int d1, int d2)
 
 void Divide(int x, int y)
 {
-    for(int d1 = 1; d1 <= n; d1++)
+    for(int d1 = 1; d1 <= n-2; d1++)
     {
-        for(int d2 = 1; d2 <= n; d2++)
+        for(int d2 = 1; d2 <= n-2; d2++)
         {
             Init();
             if(!drawLine(x,y,d1,d2)) continue;
@@ -131,8 +131,8 @@ void Divide(int x, int y)
 
 void SOLVE()
 {
-    for(int i = 1; i <= n; i++)
-        for(int j = 1; j <= n; j++)
+    for(int i = 1; i <= n-2; i++)
+        for(int j = 1; j <= n-1; j++)
         {
             Divide(i,j);
         }
