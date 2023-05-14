@@ -40,10 +40,11 @@ bool inRange(int x, int y)
 
 void checkArea(int x, int y, int d1, int d2)
 {
-    //todo 초기화 여지 있음
+    bool init = false;
     for(int i = 1; i <= n; i++)
         for(int j = 1; j <= n; j++)
         {
+            if(!init) i=x,j=y,init=true;
             if(area[i][j] != 5) continue;
             if(i == x || i == x+d1+d2) continue;
 
@@ -55,7 +56,7 @@ void checkArea(int x, int y, int d1, int d2)
             }
             break;
         }
-    
+
 }
 
 bool drawLine(int x, int y, int d1, int d2)
