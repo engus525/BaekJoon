@@ -33,7 +33,7 @@ bool inRange(int x, int y)
     return (1<=x && x<=n && 1<=y && y<=n);
 }
 
-void checkArea(int x, int y)
+void checkArea(int x)
 {
     for(int i = x+1; i < x+d1+d2; i++)
         for(int j = 1; j <= n; j++)
@@ -75,7 +75,7 @@ bool drawLine(int x, int y)
         else area[x+d2+i][y+d2-i] = 5;
     }
 
-    checkArea(x,y);
+    checkArea(x);
     return true;
 }
 
@@ -92,7 +92,7 @@ void calcNum(int x, int y)
             if(1<=i && i<x+d1 && 1<=j && j<=y) cnt[1] += A[i][j];
             else if(1<=i && i<=x+d2 && y<j && j<=n) cnt[2] += A[i][j];
             else if(x+d1<=i && i<=n && 1<=j && j<y-d1+d2) cnt[3] += A[i][j];
-            else if(x+d2<i && i<=n && y-d1+d2<=j && j<=n) cnt[4] += A[i][j];
+            else cnt[4] += A[i][j];
         }
     }
     cnt[5] = total-cnt[1]-cnt[2]-cnt[3]-cnt[4];
@@ -111,12 +111,10 @@ void Divide(int x, int y)
 {
     for(d1 = 1; d1 <= n; d1++)
     {
-        if(x+d1 > n) break;
-        if(y-d1 < 1) break;
+        if(x+d1 > n || y-d1 < 1) break;
         for(d2 = 1; d2 <= n; d2++)
         {
-            if(x+d2 > n) break;
-            if(y+d2 > n) break;
+            if(x+d2 > n || y+d2 > n) break;
 
             Init();
             if(!drawLine(x,y)) continue;
