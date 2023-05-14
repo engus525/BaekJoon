@@ -7,6 +7,7 @@ using namespace std;
 
 int n;
 int A[21][21];
+int d1,d2;
 int total = 0;
 int area[21][21];
 typedef pair<int,int> pii;
@@ -38,7 +39,7 @@ bool inRange(int x, int y)
     return (1<=x && x<=n && 1<=y && y<=n);
 }
 
-void checkArea(int x, int y, int d1, int d2)
+void checkArea(int x, int y)
 {
     bool init = false;
     for(int i = 1; i <= n; i++)
@@ -59,7 +60,7 @@ void checkArea(int x, int y, int d1, int d2)
 
 }
 
-bool drawLine(int x, int y, int d1, int d2)
+bool drawLine(int x, int y)
 {//5번 선거구 경계선
 
     for(int i = 0; i <= d1; i++)
@@ -83,11 +84,11 @@ bool drawLine(int x, int y, int d1, int d2)
         else area[x+d2+i][y+d2-i] = 5;
     }
 
-    checkArea(x,y,d1,d2);
+    checkArea(x,y);
     return true;
 }
 
-void calcNum(int x, int y, int d1, int d2)
+void calcNum(int x, int y)
 {
     //선거구별 인구 count
     int cnt[6] = {0};
@@ -117,14 +118,14 @@ void calcNum(int x, int y, int d1, int d2)
 
 void Divide(int x, int y)
 {
-    for(int d1 = 1; d1 <= n-2; d1++)
+    for(d1 = 1; d1 <= n-2; d1++)
     {
-        for(int d2 = 1; d2 <= n-2; d2++)
+        for(d2 = 1; d2 <= n-2; d2++)
         {
             Init();
-            if(!drawLine(x,y,d1,d2)) continue;
+            if(!drawLine(x,y)) continue;
 
-            calcNum(x,y,d1,d2);
+            calcNum(x,y);
         }
     }
 }
