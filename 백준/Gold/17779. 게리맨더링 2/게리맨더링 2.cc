@@ -118,10 +118,13 @@ void calcNum(int x, int y)
 
 void Divide(int x, int y)
 {
-    for(d1 = 1; d1 <= n-2; d1++)
+    for(d1 = 1; d1 <= n; d1++)
     {
-        for(d2 = 1; d2 <= n-2; d2++)
+        if(x+d1 > n) break;
+        for(d2 = 1; d2 <= n; d2++)
         {
+            if(x+d2 > n) break;
+            
             Init();
             if(!drawLine(x,y)) continue;
 
