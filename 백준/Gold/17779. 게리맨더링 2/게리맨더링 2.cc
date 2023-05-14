@@ -121,10 +121,12 @@ void Divide(int x, int y)
     for(d1 = 1; d1 <= n; d1++)
     {
         if(x+d1 > n) break;
+        if(y-d1 < 1) break;
         for(d2 = 1; d2 <= n; d2++)
         {
             if(x+d2 > n) break;
-            
+            if(y+d2 > n) break;
+
             Init();
             if(!drawLine(x,y)) continue;
 
