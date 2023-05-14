@@ -1,5 +1,4 @@
 #include <iostream>
-#include <queue>
 #include <algorithm>
 
 using namespace std;
@@ -10,11 +9,6 @@ int A[21][21];
 int d1,d2;
 int total = 0;
 int area[21][21];
-typedef pair<int,int> pii;
-pii dir[4] = {{0,1},
-                        {0,-1},
-                        {1,0},
-                        {-1,0}};
 int ans = 2e9;
 
 void INPUT()
@@ -41,13 +35,10 @@ bool inRange(int x, int y)
 
 void checkArea(int x, int y)
 {
-    bool init = false;
-    for(int i = 1; i <= n; i++)
+    for(int i = x+1; i < x+d1+d2; i++)
         for(int j = 1; j <= n; j++)
         {
-            if(!init) i=x,j=y,init=true;
             if(area[i][j] != 5) continue;
-            if(i == x || i == x+d1+d2) continue;
 
             int idx = j+1;
             while(area[i][idx] != 5)
