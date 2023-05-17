@@ -25,13 +25,13 @@ void SOLVE()
     {
         priority_queue<ll> pq;
         bool candidate = false;
-        if (str[i-1] == 'B' && str[i] == 'W')
+        char now = str[i];
+        if (str[i-1] != now)
         {
             int idx = i;
-            while(true)
+            while(idx != n)
             {
-                if(idx == n) break;
-                if(str[idx] == 'B')
+                if(str[idx] != now)
                 {
                     candidate = true;
                     i = idx-1;
@@ -40,22 +40,6 @@ void SOLVE()
                 pq.push(A[idx++]);
             }
         }
-        else if (str[i-1] == 'W' && str[i] == 'B')
-        {
-            int idx = i;
-            while(true)
-            {
-                if(idx == n) break;
-                if(str[idx] == 'W')
-                {
-                    candidate = true;
-                    i = idx-1;
-                    break;
-                }
-                pq.push(A[idx++]);
-            }
-        }
-//        if(candidate) cout << pq.top() << " ";
         if(candidate) score.push(pq.top());
     }
 
