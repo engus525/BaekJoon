@@ -44,7 +44,7 @@ void SOLVE()
 
     ll ans = 0;
     int cnt = score.size();
-    for (int i = 0; i < cnt; i++) ans += score.top(), score.pop(), cnt--;
+    for (int i = 0; i < (cnt+1)/2; i++) ans += score.top(), score.pop();
     cout << ans;
 }
 
