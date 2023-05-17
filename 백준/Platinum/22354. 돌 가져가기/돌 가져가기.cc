@@ -19,7 +19,6 @@ void INPUT()
 
 void SOLVE()
 {
-
     priority_queue<ll> score;
     for (int i = 1; i <= n - 2; i++)
     {
