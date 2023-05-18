@@ -67,11 +67,7 @@ void SOLVE()
             if(!L.empty())
             {
                 //왼쪽에 기다리는 사람이 있다면
-                if(now >= L.top().first)
-                {
-                    LtoR();
-                    continue;
-                }
+                if(now >= L.top().first) LtoR();
                 //왼쪽에 기다리는 사람이 없다면
                 else
                 {
@@ -83,14 +79,9 @@ void SOLVE()
                         now = l;
                         //도착 시간이 l인 사람은 모두 태울 수 있음
                         LtoR();
-                        continue;
                     }
                     //오른쪽에 먼저 온다면
-                    else
-                    {
-                        Move(max(now,r));
-                        continue;
-                    }
+                    else Move(max(now,r));
                 }
 
             }//if(!L.empty()) end
@@ -122,22 +113,13 @@ void SOLVE()
                         now = r;
                         //도착 시간이 r인 사람은 모두 태울 수 있음
                         RtoL();
-                        continue;
                     }
                     //왼쪽에 먼저 온다면
-                    else
-                    {
-                        Move(max(now,l));
-                        continue;
-                    }
+                    else Move(max(now,l));
                 }
 
             }//if(!R.empty()) end
-            else
-            {
-                Move(max(now,L.top().first));
-                continue;
-            }
+            else Move(max(now,L.top().first));
         }
     }
 
