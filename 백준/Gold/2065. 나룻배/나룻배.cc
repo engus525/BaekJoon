@@ -27,6 +27,12 @@ void INPUT()
     }
 }
 
+void Move(int x)
+{
+    now = x+t;
+    dock = 1 - dock;
+}
+
 void LtoR()
 {
     for(int i = 0; i < m; i++)
@@ -36,9 +42,9 @@ void LtoR()
         ans.push({L.top().second,now+t});
         L.pop();
     }
-    now += t;
-    dock = 1;
+    Move(now);
 }
+
 void RtoL()
 {
     for(int i = 0; i < m; i++)
@@ -48,9 +54,9 @@ void RtoL()
         ans.push({R.top().second,now+t});
         R.pop();
     }
-    now += t;
-    dock = 0;
+    Move(now);
 }
+
 
 void SOLVE()
 {
@@ -82,8 +88,7 @@ void SOLVE()
                     //오른쪽에 먼저 온다면
                     else
                     {
-                        now = max(now,r) + t;
-                        dock = 1;
+                        Move(max(now,r));
                         continue;
                     }
                 }
@@ -91,8 +96,7 @@ void SOLVE()
             }//if(!L.empty()) end
             else
             {
-                now = max(now,R.top().first) + t;
-                dock = 1;
+                Move(max(now,R.top().first));
                 continue;
             }
         }//if(dock == 0) end
@@ -123,8 +127,7 @@ void SOLVE()
                     //왼쪽에 먼저 온다면
                     else
                     {
-                        now = max(now,l) + t;
-                        dock = 0;
+                        Move(max(now,l));
                         continue;
                     }
                 }
@@ -132,8 +135,7 @@ void SOLVE()
             }//if(!R.empty()) end
             else
             {
-                now = max(now,L.top().first) + t;
-                dock = 0;
+                Move(max(now,L.top().first));
                 continue;
             }
         }
