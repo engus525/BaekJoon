@@ -5,11 +5,10 @@
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 
-typedef long long ll;
-ll n,d;
-typedef pair<ll,ll> pll;
-vector<pll> graph[10001];
-ll dist[10001];
+int n,d;
+typedef pair<int,int> pii;
+vector<pii> graph[10001];
+int dist[10001];
 
 void INPUT()
 {
@@ -17,18 +16,18 @@ void INPUT()
     cin >> n >> d;
     for(int i = 0; i < n; i++)
     {
-        ll a,b,c; cin>>a>>b>>c;
+        int a,b,c; cin>>a>>b>>c;
         graph[a].emplace_back(b,min(b-a,c));
     }
 }
 
-ll ijk()
+int ijk()
 {
     for(int i = 0; i < d; i++)
         graph[i].emplace_back(i+1,1);
 
     fill(dist,dist+d+1,2e9);
-    priority_queue<pll> pq;
+    priority_queue<pii> pq;
     pq.push({0,0});
     dist[0] = 0;
 
