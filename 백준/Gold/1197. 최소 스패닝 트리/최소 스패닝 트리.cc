@@ -1,57 +1,62 @@
 #include <iostream>
 #include <vector>
-#include <queue>
 #include <algorithm>
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 
-int v,e;
+int n,m;
 int a,b,c;
-typedef pair<int,int> pii;
-vector<pii> graph[10001];
-bool visited[10001];
+struct KS
+{
+    int s,e,v;
+};
+bool comp(KS x, KS y)
+{
+    return x.v < y.v;
+}
+vector<KS> v;
+int parent[10001];
 
 void INPUT()
 {
     IAMFAST
-    cin >> v >> e;
-    for (int i = 0; i < e; i++)
+    cin >> n >> m;
+    for (int i = 0; i < m; i++)
     {
         cin >> a >> b >> c;
-        graph[a].emplace_back(b,c);
-        graph[b].emplace_back(a,c);
+        v.push_back({a, b, c});
     }
 }
 
-int Prim()
+int Find(int x)
 {
-    int ans = 0;
+    if(x == parent[x]) return x;
+    else return parent[x] = Find(parent[x]);
+}
 
-    priority_queue<pii> pq;
-    for(auto &i : graph[1])
-        pq.push({-i.second,i.first});
-    visited[1] = true;
+bool Union(int x, int y)
+{
+    x = Find(x);
+    y = Find(y);
 
-    while(!pq.empty())
-    {
-        auto [dist1,now] = pq.top();
-        pq.pop();
+    if(x == y) return true;
 
-        if(visited[now]) continue;
-        visited[now] = true;
-
-        ans += -dist1;
-
-        for(auto &[next,dist2] : graph[now])
-            pq.push({-dist2,next});
-    }
-    return ans;
+    parent[x] = y;
+    return false;
 }
 
 void SOLVE()
 {
-    cout << Prim();
+    sort(v.begin(),v.end(),comp);
+
+    for(int i = 1; i <= n; i++) parent[i] = i;
+
+    int ans = 0;
+    for(int i = 0; i < m; i++)
+        if(!Union(v[i].s, v[i].e))
+            ans += v[i].v;
+    cout << ans;
 }
 
 int main()
