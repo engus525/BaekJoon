@@ -15,11 +15,9 @@ void INPUT()
 void SOLVE()
 {
     int ps = 2;
-    int value = 1;
     for(int i = 0; i < n; i++)
     {
-        ps += value;
-        value = 2*value;
+        ps += ps-1;
     }
     cout << ps*ps;
 }
