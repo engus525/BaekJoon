@@ -43,7 +43,8 @@ bool Union(int x,int y)
 
     if(x == y) return false;
 
-    parent[x] = y;
+    if(x > y) parent[x] = y;
+    else parent[y] = x;
     return true;
 }
 
