@@ -73,51 +73,6 @@ void getTitle(int &idx)
     cout << title << "\n";
 }
 
-string getPLine(int &idx)
-{
-    string str = "";
-    while(!endP(idx))
-    {
-        str += html[idx++];
-    }
-    return str;
-}
-
-void removeTag(string &str)
-{
-    for (int i = 0; i < str.length(); i++)
-    {
-        if(str[i] == '<')
-        {
-            while(str[i] != '>') str.erase(i,1);
-            str.erase(i,1);
-            i--;
-        }
-    }
-}
-
-void removeBlank(string &str)
-{
-    for (int i = 0; i < str.length(); i++)
-    {
-        if(str[i] == ' ') str.erase(i,1);
-        else break;
-    }
-
-    for (int i = str.length()-1; i >= 0; i--)
-    {
-        if(str[i] == ' ') str.erase(i,1);
-        else break;
-    }
-}
-
-void sumBlank(string &str)
-{
-    for (int i = 0; i < str.length(); i++)
-    {
-        if(str[i] == ' ') while(str[i+1] == ' ') str.erase(i,1);
-    }
-}
 
 void getP(int &idx)
 {
@@ -177,7 +132,3 @@ int main()
     INPUT();
     SOLVE();
 }
-
-/*
-<main><div title="1"><p> </p><p>pa <b></b> <br ><br > <b> 1   <i> h </i> 3</b> <b>  </b> end.</p></div></main>
- */
