@@ -81,7 +81,6 @@ void getP(int &idx)
         if(startP(idx)) idx += 3;
 
         string temp = "";
-        bool allBlank = true;
         while(!endP(idx))
         {
             if(html[idx] == '<')
@@ -90,7 +89,6 @@ void getP(int &idx)
                 idx++;
                 continue;
             }
-            if(html[idx] != ' ') allBlank = false;
             temp += html[idx++];
         }
 
@@ -108,7 +106,6 @@ void getP(int &idx)
             if (i == p.length() - 1 && p[i] == ' ') break;
             cout << p[i];
         }
-        if(allBlank) cout << " ";
         cout << '\n';
 
         // </p> 끝으로 이동
