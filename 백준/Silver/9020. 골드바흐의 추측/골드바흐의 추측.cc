@@ -1,6 +1,4 @@
 #include <iostream>
-#include <cmath>
-#include <algorithm>
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
@@ -16,7 +14,6 @@ void INPUT()
 
 void eratos()
 {
-    notPrime[1] = true;
     for(int i = 2; i*i <= 10000; i++)
     {
         if(notPrime[i]) continue;
@@ -33,18 +30,17 @@ void SOLVE()
     {
         cin >> n;
 
-        int ans1, ans2;
+        pair<int,int> ans = {0,0};
         for(int i = n/2; i >= 2; i--)
         {
             if(!notPrime[i])
                 if(!notPrime[n - i])
                 {
-                    ans1 = i,ans2 = n-i;
+                    ans = {i,n-i};
                     break;
                 }
         }
-        cout << ans1 << " " << ans2 << '\n';
-
+        cout << ans.first << " " << ans.second << '\n';
     }
 }
 
