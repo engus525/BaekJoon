@@ -31,7 +31,7 @@ void SOLVE()
         cin >> n;
 
         int gap = 2e9, ans1, ans2;
-        for(int i = 2; i <= n; i++)
+        for(int i = 2; i <= n/2; i++)
         {
             if(!notPrime[i])
                 if(!notPrime[n - i])
@@ -39,7 +39,7 @@ void SOLVE()
                         gap = abs(i-(n-i)),
                         ans1 = i,ans2 = n-i;
         }
-        cout << min(ans1,ans2) << " " << max(ans1,ans2) << '\n';
+        cout << ans1 << " " << ans2 << '\n';
 
     }
 }
