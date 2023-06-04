@@ -8,7 +8,6 @@ int t, n;
 int file[501];
 int ps[501];
 int dp[501][501];
-int ans = 2e9;
 
 void INPUT()
 {
@@ -16,18 +15,12 @@ void INPUT()
     cin >> t;
 }
 
-void init()
-{
-    ans = 2e9;
-    for(int i = 1; i <= 501; i++) file[i] = 0,ps[i] = 0;
-    memset(dp,0,sizeof dp);
-}
 
 void SOLVE()
 {
     while(t--)
     {
-        init();
+        memset(dp,0,sizeof dp);
         cin >> n;
         for(int i = 1; i <= n; i++) cin >> file[i],ps[i] = ps[i-1]+file[i];
 
