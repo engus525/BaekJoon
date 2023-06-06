@@ -11,8 +11,7 @@ struct Fire
 };
 vector<Fire> map[51][51];
 vector<Fire> ball;
-typedef pair<int, int> pii;
-pii dir[8] = {{-1, 0},
+pair<int,int> dir[8] = {{-1, 0},
               {-1, 1},
               {0,  1},
               {1,  1},
@@ -47,16 +46,14 @@ void Move()
         for (int j = 1; j <= n; j++)
             map[i][j].clear();
 
-    for (int i = 0; i < ball.size(); i++)
+    for (auto &f : ball)
     {
-        Fire now = ball[i];
-        
-        int nx = setPos(now.r + dir[now.d].first * (now.s%n));
-        int ny = setPos(now.c + dir[now.d].second * (now.s%n));
+        int nx = setPos(f.r + dir[f.d].first * (f.s%n));
+        int ny = setPos(f.c + dir[f.d].second * (f.s%n));
 
-        map[nx][ny].push_back({nx, ny, now.m, now.s, now.d});
-        ball[i].r = nx;
-        ball[i].c = ny;
+        map[nx][ny].push_back({nx, ny, f.m, f.s, f.d});
+        f.r = nx;
+        f.c = ny;
     }
 
 }
@@ -90,7 +87,6 @@ void SumAndDivide()
             //==========SUM
             int mSum = 0;
             int sSum = 0;
-            int cnt = map[i][j].size();
             vector<int> dirs;
             for (int idx = 0; idx < map[i][j].size(); idx++)
             {
@@ -105,12 +101,9 @@ void SumAndDivide()
             if (mSum / 5 == 0) continue;
             else
             {
-                if (evenDir(dirs))
-                    for (int d = 0; d <= 6; d += 2)
-                        newBall.push_back({i, j, mSum / 5, sSum / cnt, d});
-                else
-                    for (int d = 1; d <= 7; d += 2)
-                        newBall.push_back({i, j, mSum / 5, sSum / cnt, d});
+                int d = (evenDir(dirs)) ? 0 : 1;
+                for (; d <= 7; d += 2)
+                    newBall.push_back({i, j, mSum / 5, sSum / int(map[i][j].size()), d});
             }
 
         }
