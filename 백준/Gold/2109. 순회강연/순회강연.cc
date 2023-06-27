@@ -6,16 +6,8 @@ using namespace std;
 
 int n;
 typedef long long ll;
-struct comp
-{
-    bool operator()(pair<int,ll> a, pair<int,ll> b)
-    {
-        if(a.second == b.second) return a.first > b.first;
-        else return a.second < b.second;
-    }
-};
-priority_queue<pair<int,ll>, vector<pair<int,ll>>, comp> pq;
-bool visited[10001];
+priority_queue<pair<int,ll>, vector<pair<int,ll>>, greater<>> pq;
+priority_queue<ll, vector<ll>, greater<>> P;
 ll ans = 0;
 
 void INPUT()
@@ -35,14 +27,15 @@ void SOLVE()
     while(!pq.empty())
     {
         auto [d,p] = pq.top();
-        for(int i = d; i >= 1; i--)
-            if(!visited[i])
-            {
-                ans += p;
-                visited[i] = true;
-                break;
-            }
+        P.emplace(p);
+        ans += p;
         pq.pop();
+
+        if (P.size() > d)
+        {
+            ans -= P.top();
+            P.pop();
+        }
     }
     cout << ans;
 }
