@@ -25,9 +25,10 @@ int fib(int x, int &cnt)
 
 void SOLVE()
 {
-    int ans1 = 0;
-    fib(n, ans1);
-    cout << ans1 << " " << n-2;
+    dp[5] = 5; dp[6] = 8;
+    for(int i = 7; i <= n; i++)
+        dp[i] = dp[i-1] + dp[i-2];
+    cout << dp[n] << " " << n-2;
 }
 
 int main()
