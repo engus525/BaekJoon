@@ -18,6 +18,7 @@ pii dir[4] = {{0,  1},
               {0,  -1},
               {-1, 0},
               {1,  0}};
+bool endStatus = false;
 
 void INPUT()
 {
@@ -56,6 +57,7 @@ void toWhite(int idx, int nx, int ny)
     while (!temp.empty())
     {
         dq[nx][ny].emplace_back(temp.back());
+        if(dq[nx][ny].size() >= 4) endStatus = true;
         temp.pop_back();
     }
 }
@@ -71,20 +73,12 @@ void toRed(int idx, int nx, int ny)
         dq[x][y].pop_back();
 
         dq[nx][ny].emplace_back(back);
+        if(dq[nx][ny].size() >= 4) endStatus = true;
         v[back].x = nx;
         v[back].y = ny;
 
         if (back == idx) break;
     }
-}
-
-bool endStatus()
-{
-    for (int i = 1; i <= n; i++)
-        for (int j = 1; j <= n; j++)
-            if (dq[i][j].size() >= 4)
-                return true;
-    return false;
 }
 
 void SOLVE()
@@ -112,7 +106,7 @@ void SOLVE()
             if (map[nx][ny] == 0) toWhite(i, nx, ny);
             else if (map[nx][ny] == 1) toRed(i, nx, ny);
 
-            if (endStatus())
+            if (endStatus)
             {
                 cout << ans;
                 return;
