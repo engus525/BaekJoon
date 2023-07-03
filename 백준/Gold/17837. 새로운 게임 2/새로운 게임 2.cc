@@ -8,16 +8,15 @@ using namespace std;
 int n, k;
 int map[13][13];
 deque<int> dq[13][13];
-typedef pair<int, int> pii;
-struct chess
+struct Chess
 {
     int x, y, d;
 };
-vector<chess> v(11);
-pii dir[4] = {{0,  1},
-              {0,  -1},
-              {-1, 0},
-              {1,  0}};
+vector<Chess> v(11);
+pair<int, int> dir[4] = {{0,  1},
+                         {0,  -1},
+                         {-1, 0},
+                         {1,  0}};
 bool endStatus = false;
 
 void INPUT()
@@ -57,7 +56,7 @@ void toWhite(int idx, int nx, int ny)
     while (!temp.empty())
     {
         dq[nx][ny].emplace_back(temp.back());
-        if(dq[nx][ny].size() >= 4) endStatus = true;
+        if (dq[nx][ny].size() >= 4) endStatus = true;
         temp.pop_back();
     }
 }
@@ -73,12 +72,18 @@ void toRed(int idx, int nx, int ny)
         dq[x][y].pop_back();
 
         dq[nx][ny].emplace_back(back);
-        if(dq[nx][ny].size() >= 4) endStatus = true;
+        if (dq[nx][ny].size() >= 4) endStatus = true;
         v[back].x = nx;
         v[back].y = ny;
 
         if (back == idx) break;
     }
+}
+
+bool cantGo(int x, int y)
+{
+    return ((x < 1 || n < x || y < 1 || n < y) ||
+           map[x][y] == 2);
 }
 
 void SOLVE()
@@ -92,15 +97,12 @@ void SOLVE()
             int nx = v[i].x + dir[v[i].d].first;
             int ny = v[i].y + dir[v[i].d].second;
 
-            if ((nx < 1 || n < nx || ny < 1 || n < ny) ||
-                map[nx][ny] == 2)
+            if (cantGo(nx,ny))
             {
-                v[i].d = (v[i].d % 2) ? v[i].d-1 : v[i].d+1;
+                v[i].d = (v[i].d % 2) ? v[i].d - 1 : v[i].d + 1;
                 nx = v[i].x + dir[v[i].d].first;
                 ny = v[i].y + dir[v[i].d].second;
-                if ((nx < 1 || n < nx || ny < 1 || n < ny) ||
-                    map[nx][ny] == 2)
-                    continue;
+                if (cantGo(nx,ny)) continue;
             }
 
             if (map[nx][ny] == 0) toWhite(i, nx, ny);
