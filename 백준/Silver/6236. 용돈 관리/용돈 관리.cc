@@ -8,6 +8,7 @@ using namespace std;
 int n, m;
 typedef long long ll;
 vector<ll> v;
+ll sumV = 0, maxV = -1;
 ll ans = 2e18;
 
 void INPUT()
@@ -16,8 +17,10 @@ void INPUT()
     cin >> n >> m;
     for (int i = 0; i < n; i++)
     {
-        int need;
+        ll need;
         cin >> need;
+        sumV += need;
+        maxV = max(maxV, need);
         v.emplace_back(need);
     }
 }
@@ -25,21 +28,21 @@ void INPUT()
 void SOLVE()
 {
 
-    ll left = 1, right = 10000 * 100000;
+    ll left = 1, right = sumV;
     while (left <= right)
     {
         ll mid = (left + right) / 2;
+        if(maxV > mid)
+        {
+            left = mid + 1;
+            continue;
+        }
 
         int cnt = 0;
         ll now = 0;
         for (auto &i: v)
         {
-            if (i > mid)
-            {
-                cnt = 2e9;
-                break;
-            }
-            else if (i > now) cnt++, now = mid - i;
+            if (i > now) cnt++, now = mid - i;
             else now -= i;
         }
 
