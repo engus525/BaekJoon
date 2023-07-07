@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <map>
+#include <unordered_map>
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);
@@ -18,7 +18,7 @@ bool comp(pair<string,int> &a, pair<string,int> &b)
     }
     else return a.second > b.second;
 }
-map<string,int> words;
+unordered_map<string,int> words;
 
 
 void INPUT()
