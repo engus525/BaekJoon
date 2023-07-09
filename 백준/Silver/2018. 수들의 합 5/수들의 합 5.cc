@@ -17,20 +17,20 @@ void INPUT()
 void solution()
 {
     int ans = 1;
-    for(int i = 1; i <= n/2; i++)
+
+    int left = 1, right = 2;
+    int result = left+right;
+    while (left < right && right <= n)
     {
-        int j = i+1;
-        while(true)
+
+        if (result < n) result += ++right;
+        else
         {
-            if((i+j)*(j-i+1)/2 < n) j++;
-            else if((i+j)*(j-i+1)/2 == n)
-            {
-                ans++;
-                break;
-            }
-            else break;
+            if(result == n) ans++;
+            result -= left++;
         }
     }
+
     cout << ans;
 }
 
