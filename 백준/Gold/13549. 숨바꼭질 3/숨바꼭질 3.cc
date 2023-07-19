@@ -1,18 +1,10 @@
 #include <iostream>
-#include <vector>
 #include <queue>
-#include <stack>
-#include <map>
-#include <set>
 #include <string>
 #include <algorithm>
-#include <memory.h>
-#include <cmath>
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);
-typedef long long ll;
-typedef pair<int, int> pii;
 
 int n, k;
 int visited[100001];
@@ -52,7 +44,7 @@ int BFS()
 
 void solution()
 {
-    for(int i = 0; i < 100001; i++) visited[i] = 2e9;
+    fill(visited, visited + 100001, 2e9);
     cout << BFS();
 }
 
