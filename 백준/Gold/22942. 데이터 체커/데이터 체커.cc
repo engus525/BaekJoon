@@ -1,17 +1,10 @@
 #include <iostream>
 #include <vector>
-#include <queue>
 #include <stack>
-#include <map>
-#include <set>
-#include <string>
 #include <algorithm>
-#include <memory.h>
-#include <cmath>
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);
-typedef long long ll;
 typedef pair<int, int> pii;
 
 int n;
@@ -46,7 +39,6 @@ void solution()
         if(v[i-1].pos == v[i].pos) ans = false;
     for(int i = 0; i < v.size(); i++)
     {
-//        cout << v[i].pos << " " << v[i].isOpen << " " << v[i].order << '\n';
         if(v[i].isOpen)
         {
             st.emplace(v[i].pos,v[i].order);
