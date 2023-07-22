@@ -1,24 +1,12 @@
 #include <iostream>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <map>
-#include <set>
-#include <string>
-#include <algorithm>
-#include <memory.h>
-#include <cmath>
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);
-typedef long long ll;
-typedef pair<int, int> pii;
 
 int n;
-int graph[4001][4001];
-int dp[4001][4001];
+int graph[1002][1002];
+int dp[1002][1002];
 #define MOD 1'000'000'007
-int ans1, ans2;
 
 void INPUT()
 {
@@ -32,20 +20,13 @@ void INPUT()
 
 void solution()
 {
-    for (int i = 1; i <= n; i++)
-        for (int j = 1; j <= n; j++)
+    for (int i = 1; i <= n+1; i++)
+        for (int j = 1; j <= n+1; j++)
         {
             if(i == 1 || j == 1) dp[i][j] = 1;
-            else dp[i][j] = (dp[i-1][j]%MOD + dp[i][j-1]%MOD)%MOD;
+            else dp[i][j] = (dp[i-1][j] + dp[i][j-1]) % MOD;
         }
-
-    int ans = 1;
-    for (int i = 1; i <= n; i++)
-        for (int j = 1; j <= n; j++)
-            ans += dp[i][j], ans %= MOD;
-    cout << ans << " ";
-
-    cout << n*n;
+    cout << dp[n+1][n+1] << " " << n*n;
 
 }
 
