@@ -6,7 +6,7 @@ using namespace std;
 
 int n;
 int cost[10001];
-int dp[1001][1001];
+int dp[10001];
 
 void INPUT()
 {
@@ -15,27 +15,15 @@ void INPUT()
     for (int i = 1; i <= n; i++) cin >> cost[i];
 }
 
-
 void solution()
 {
-    for (int i = 1; i <= n; i++) dp[1][i] = cost[1] * i;
-
-    int ans = 2e9;
-    for (int i = 2; i <= n; i++)
+    for (int i = 1; i <= n; i++)
     {
-        for (int j = 1; j <= n; j++)
-        {
-
-            dp[i][j] = dp[i-1][j];
-            if (j - i >= 0)
-                dp[i][j] = min(min(dp[i][j],
-                                   dp[i][j - i] + cost[i]),
-                               dp[i - 1][j - i] + cost[i]);
-            
-            if(j == n) ans = min(ans, dp[i][n]);
-        }
+        dp[i] = cost[i];
+        for (int j = 1; j <= i; j++)
+            dp[i] = min(dp[i], dp[i - j] + dp[j]);
     }
-    cout << ans;
+    cout << dp[n];
 }
 
 int main()
