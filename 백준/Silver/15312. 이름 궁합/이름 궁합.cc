@@ -1,18 +1,9 @@
 #include <iostream>
 #include <vector>
-#include <queue>
-#include <stack>
-#include <map>
-#include <set>
 #include <string>
-#include <algorithm>
-#include <memory.h>
-#include <cmath>
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);
-typedef long long ll;
-typedef pair<int, int> pii;
 
 string A, B;
 int cnt[26] = {3, 2, 1, 2, 3, 3, 2, 3,
@@ -25,7 +16,6 @@ void INPUT()
     IAMFAST
     cin >> A >> B;
 }
-
 
 void solution()
 {
@@ -42,8 +32,7 @@ void solution()
         v = temp;
     }
 
-    if(v.size() == 1) cout << 0 << v[0];
-    else cout << v[0] << v[1];
+    cout << v[0] << v[1];
 }
 
 int main()
