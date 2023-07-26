@@ -1,18 +1,10 @@
 #include <iostream>
 #include <vector>
-#include <queue>
-#include <stack>
-#include <map>
-#include <set>
-#include <string>
 #include <algorithm>
-#include <memory.h>
-#include <cmath>
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);
 typedef long long ll;
-typedef pair<int, int> pii;
 
 int n;
 vector<ll> v;
@@ -37,7 +29,6 @@ void solution()
     for(int i = 0; i < n; i++)
     {
         ll target = v[i];
-//        cout << "target : " << target << '\n';
 
         int left = 0, right = n - 1;
         while(left < right)
@@ -50,7 +41,6 @@ void solution()
                 else if (i == right) right--;
                 else
                 {
-//                    cout << v[left] << " + " << v[right] << '\n';
                     ans++;
                     break;
                 }
