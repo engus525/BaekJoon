@@ -1,13 +1,5 @@
 #include <iostream>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <map>
-#include <set>
-#include <string>
 #include <algorithm>
-#include <memory.h>
-#include <cmath>
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);
