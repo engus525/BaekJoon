@@ -1,19 +1,8 @@
 #include <iostream>
-#include <vector>
 #include <queue>
-#include <map>
-#include <set>
-#include <string>
-#include <algorithm>
 #include <memory.h>
-#include <cmath>
 
 using namespace std;
-#define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);
-typedef long long ll;
-typedef pair<int, int> pii;
-typedef pair<long long, long long> pll;
-
 
 int l,r,c;
 char graph[31][31][31];
@@ -29,12 +18,6 @@ Pos dir[6] = {{0,  -1, 0},
               {1,  0,  0},
               {-1, 0,  0}};
 Pos start;
-
-
-void INPUT()
-{
-    //IAMFAST
-}
 
 void BFS()
 {
@@ -70,7 +53,7 @@ void BFS()
     cout << "Trapped!\n";
 }
 
-void solution()
+int main()
 {
     while(cin >> l >> r >> c)
     {
@@ -87,10 +70,4 @@ void solution()
 
         BFS();
     }
-}
-
-int main()
-{
-    INPUT();
-    solution();
 }
