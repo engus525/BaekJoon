@@ -72,7 +72,7 @@ void solution()
                     break;
                 }
 
-        if (n == 1 || possible) cout << "possible\n";
+        if (possible) cout << "possible\n";
         else cout << "impossible\n";
     }
 }
