@@ -66,7 +66,11 @@ void solution()
         bool possible = true;
         for (int i = 1; i <= n; i++)
             if (!visited[i])
-                if (!BFS(i)) possible = false;
+                if (!BFS(i))
+                {
+                    possible = false;
+                    break;
+                }
 
         if (n == 1 || possible) cout << "possible\n";
         else cout << "impossible\n";
