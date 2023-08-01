@@ -1,19 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <map>
-#include <set>
 #include <string>
-#include <algorithm>
-#include <memory.h>
-#include <cmath>
 
 using namespace std;
-#define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);
-typedef long long ll;
 typedef pair<int, int> pii;
-typedef pair<long long, long long> pll;
-
 
 int r, c;
 char graph[51][51];
@@ -29,7 +20,6 @@ pii start;
 
 void INPUT()
 {
-    //IAMFAST
     cin >> r >> c;
     for (int i = 0; i < r; i++)
         for (int j = 0; j < c; j++)
@@ -63,19 +53,6 @@ void spread_water()
             waterQ.emplace(nx, ny);
         }
     }
-}
-
-void print2d()
-{
-    for (int i = 0; i < r; i++)
-    {
-        for (int j = 0; j < c; j++)
-        {
-            if (visited[i][j]) cout << visited[i][j];
-            else cout << graph[i][j];
-        }
-        cout << '\n';
-    }cout << '\n';
 }
 
 string BFS()
