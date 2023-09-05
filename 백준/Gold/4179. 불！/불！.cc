@@ -2,14 +2,9 @@
 #include <vector>
 #include <queue>
 #include <memory.h>
-#include <algorithm>
 
 using namespace std;
-#define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);
-typedef long long ll;
 typedef pair<int, int> pii;
-typedef pair<long long, long long> pll;
-
 
 int n, m;
 char graph[1001][1001];
@@ -25,7 +20,6 @@ pii dir[8] = {{-1, 0},
 
 void INPUT()
 {
-    //IAMFAST
     cin >> n >> m;
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
@@ -105,15 +99,3 @@ int main()
     INPUT();
     solution();
 }
-
-/**
-8 8
-###....F
-F......#
-........
-...J.##.
-#.#.....
-.F......
-.......#
-#.#.#.#.
-*/
