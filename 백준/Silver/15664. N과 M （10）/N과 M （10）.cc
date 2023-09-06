@@ -5,9 +5,6 @@
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);
-typedef long long ll;
-typedef pair<int, int> pii;
-typedef pair<long long, long long> pll;
 
 int n, m;
 vector<int> v;
@@ -26,17 +23,11 @@ void INPUT()
     }
 }
 
-void setAns()
-{
-    S.insert(comb);
-}
-
-
 void setComb(int depth, int start)
 {
     if (depth == m)
     {
-        setAns();
+        S.insert(comb);
         return;
     }
 
