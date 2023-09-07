@@ -5,9 +5,7 @@
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);
-typedef long long ll;
 typedef pair<int, int> pii;
-typedef pair<long long, long long> pll;
 
 int n, m;
 int a, b, c;
@@ -80,12 +78,8 @@ void solution()
     int minDist = 1e9;
     for (int i = 1; i <= n; i++)
     {
-        //cout << i << " : " << dist1[i] << " " << dist2[i] << '\n';
         if (i == s1 || i == s2) continue;
-        if (minDist > dist1[i] + dist2[i])
-        {
-            minDist = dist1[i] + dist2[i];
-        }
+        minDist = min(minDist, dist1[i] + dist2[i]);
     }
 
     int ans = -1;
@@ -98,13 +92,12 @@ void solution()
         if (dist > minDist) continue;
         if (dist1[i] > dist2[i]) continue;
 
-        //cout << i << " : " << dist1[i] << " " << dist2[i] << '\n';
         if (minDist == dist)
-        {
             if (s1MinDist > dist1[i])
-                s1MinDist = dist1[i],
+            {
+                s1MinDist = dist1[i];
                 ans = i;
-        }
+            }
     }
     cout << ans;
 }
