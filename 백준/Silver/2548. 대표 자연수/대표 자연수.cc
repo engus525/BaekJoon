@@ -10,7 +10,7 @@ typedef pair<int, int> pii;
 typedef pair<long long, long long> pll;
 
 int n;
-vector<ll> v;
+vector<int> v;
 
 void INPUT()
 {
@@ -18,7 +18,7 @@ void INPUT()
     cin >> n;
     for (int i = 0; i < n; ++i)
     {
-        ll num; cin >> num;
+        int num; cin >> num;
         v.emplace_back(num);
     }
 }
@@ -26,23 +26,7 @@ void INPUT()
 void solution()
 {
     sort(v.begin(), v.end());
-
-    ll minGap = 2e15;
-    ll ans = 0;
-    for (int i = 0; i < n; ++i)
-    {
-        ll gap = 0;
-        for (int j = 0; j < n; ++j)
-            gap += abs(v[i] - v[j]);
-        
-        if (minGap >= gap)
-        {
-            if (minGap > gap) ans = v[i];
-            minGap = gap;
-        }
-        else break;
-    }
-    cout << ans;
+    cout << v[(n-1)/2];
 }
 
 int main()
