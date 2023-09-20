@@ -15,7 +15,7 @@ pii dir[4] = {{0,  -1},
               {0,  1},
               {-1, 0},
               {1,  0}};
-int le = 11, ri = 0, up = 11, down = 0;
+int le = 10, ri = 0, up = 10, down = 0;
 
 void INPUT()
 {
