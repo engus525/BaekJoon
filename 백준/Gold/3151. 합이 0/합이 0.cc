@@ -9,29 +9,47 @@ typedef pair<int, int> pii;
 typedef pair<long long, long long> pll;
 
 int n;
-int list[10001];
+vector<int> v;
 
 void INPUT()
 {
-    IAMFAST
+    //IAMFAST
     cin >> n;
-    for (int i = 0; i < n; i++) cin >> list[i];
+    for (int i = 0; i < n; i++)
+    {
+        int coding; cin >> coding;
+        v.emplace_back(coding);
+    }
 }
 
 
 void solution()
 {
-    sort(list, list + n);
+    //-6 -5 -4 -4 0 1 2 2 3 7
+    sort(v.begin(), v.end());
 
     ll ans = 0;
-    for (int i = 0; i < n - 2; i++)
+    for (int cri = 0; n >= 3 && cri < v.size() - 2; cri++)
     {
-        for (int j = i + 1; j < n - 1; j++)
+        ll le = cri + 1, ri = ll(v.size()) - 1;
+        while (le < ri)
         {
-            int s = list[i] + list[j];
-            ll lb = lower_bound(list + (j + 1), list + n, s * -1) - list;
-            ll ub = upper_bound(list + (j + 1), list + n, s * -1) - list;
-            ans += ub - lb;
+            int value = v[le] + v[ri] + v[cri];
+            if (le == cri || value < 0) le++;
+            else if (ri == cri || value > 0) ri--;
+            else if (value == 0)
+            {
+                ll leq = 0, req = 0;
+                ll leV = v[le], riV = v[ri];
+                if (v[le] == v[ri])
+                {
+                    ans += (ri - le + 1) * (ri - le) / 2;
+                    break;
+                }
+                while (v[le] == leV) leq++, le++;
+                while (v[ri] == riV) req++, ri--;
+                ans += leq * req;
+            }
         }
     }
     cout << ans;
