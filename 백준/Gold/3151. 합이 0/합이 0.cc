@@ -13,7 +13,7 @@ vector<int> v;
 
 void INPUT()
 {
-    //IAMFAST
+    IAMFAST
     cin >> n;
     for (int i = 0; i < n; i++)
     {
@@ -25,7 +25,6 @@ void INPUT()
 
 void solution()
 {
-    //-6 -5 -4 -4 0 1 2 2 3 7
     sort(v.begin(), v.end());
 
     ll ans = 0;
@@ -40,7 +39,7 @@ void solution()
             else if (value == 0)
             {
                 ll leq = 0, req = 0;
-                ll leV = v[le], riV = v[ri];
+                int leV = v[le], riV = v[ri];
                 if (v[le] == v[ri])
                 {
                     ans += (ri - le + 1) * (ri - le) / 2;
