@@ -15,7 +15,6 @@ struct INFO
     int canWork;
     int idx;
 };
-
 bool comp(INFO a, INFO b)
 {
     if (a.workLeft == b.workLeft) return a.canWork < b.canWork;
@@ -39,6 +38,26 @@ void INPUT()
     for (int i = 1; i <= day; i++) cin >> need[i];
 }
 
+void hire(int d, const INFO &now)
+{
+    for (int i = d; i < d + w; i++)
+    {
+        schedule[now.idx][i] = now.idx;
+        need[i]--;
+    }
+}
+
+void postProcess(int d, INFO &person, INFO &now)
+{
+    now.canWork = d + w + rest;
+    now.workLeft -= w;
+    if (now.workLeft > 0)
+    {
+        person.workLeft = now.workLeft;
+        person.canWork = now.canWork;
+    }
+    else person.canWork = 2e9;
+}
 
 void solution()
 {
@@ -46,27 +65,15 @@ void solution()
     {
         sort(v.begin(), v.end(), comp);
 
-        for (int person = 0; person < v.size(); person++)
+        for (auto & person : v)
         {
             if (need[d] <= 0) break;
 
-            INFO now = v[person];
+            INFO now = person;
             if (now.canWork > d) continue;
 
-            for (int i = d; i < d + w; i++)
-            {
-                //cout << now.idx << " works on " << i << '\n';
-                schedule[now.idx][i] = now.idx;
-                need[i]--;
-            }
-            now.canWork = d + w + rest;
-            now.workLeft -= w;
-            if (now.workLeft > 0)
-            {
-                v[person].workLeft = now.workLeft;
-                v[person].canWork = now.canWork;
-            }
-            else v[person].canWork = 2e9;
+            hire(d, now);
+            postProcess(d, person, now);
         }
 
         if (need[d] > 0)
@@ -74,17 +81,13 @@ void solution()
             cout << -1;
             return;
         }
-
     }
 
     cout << 1 << '\n';
     for (int i = 1; i <= n; i++)
     {
         for (int j = 1; j <= day; j++)
-        {
-            //cout << schedule[i][j] << " ";
             if (schedule[i][j]) cout << j << " ", j += w;
-        }
         cout << '\n';
     }
 
