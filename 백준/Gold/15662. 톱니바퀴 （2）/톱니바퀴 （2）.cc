@@ -4,9 +4,6 @@
 
 using namespace std;
 #define IAMFAST ios_base::sync_with_stdio(false);cin.tie(0);
-typedef long long ll;
-typedef pair<int, int> pii;
-typedef pair<long long, long long> pll;
 
 int n, t;
 deque<char> dq[1001];
@@ -18,29 +15,19 @@ void INPUT()
     cin >> n;
     for (int i = 1; i <= n; i++)
     {
-        string str; cin >> str;
-        for (char s : str)
+        string str;
+        cin >> str;
+        for (char s: str)
             dq[i].push_back(s);
     }
     cin >> t;
 }
 
-void printState()
-{
-    for (int i = 1; i <= n; i++)
-    {
-        for (int j = 0; j < 8; j++)
-            cout << dq[i][j] << " ";
-        cout << '\n';
-    }
-    cout << "\n\n";
-}
-
-void Rotate(int i,int &d)
+void Rotate(int i, int &d)
 {
     if (d == 1) dq[i].push_front(dq[i].back()), dq[i].pop_back();
     else dq[i].push_back(dq[i].front()), dq[i].pop_front();
-    d *= -1;
+    if (i != idx) d *= -1;
 }
 
 void left()
@@ -82,14 +69,12 @@ void solution()
 {
     while (t--)
     {
-        //printState();
         cin >> idx >> dir;
 
         left();
         right();
 
         Rotate(idx, dir);
-        dir *= -1;
     }
 
     int ans = 0;
