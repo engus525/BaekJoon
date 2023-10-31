@@ -18,12 +18,10 @@ bool comp(COUNTRY a, COUNTRY b)
 {
     if (a.g == b.g)
     {
-        if (a.s == b.s)
-        {
-            if (a.b == b.b) return a.b == b.b;
-            else return a.b > b.b;
-        } else return a.s > b.s;
-    } else return a.g > b.g;
+        if (a.s == b.s) return a.b > b.b;
+        else return a.s > b.s;
+    }
+    else return a.g > b.g;
 }
 bool operator==(COUNTRY a, COUNTRY b)
 {
