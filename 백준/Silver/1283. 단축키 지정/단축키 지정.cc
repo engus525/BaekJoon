@@ -20,7 +20,6 @@ void INPUT()
 bool checkFirstAlphabet(int idx)
 {
     for (int i = 0; i < str.length(); i++)
-        if (str[i] != ' ')
             if (i == 0 || (str[i - 1] == ' '))
                 if (S.find(char(toupper(str[i]))) == S.end())
                 {
