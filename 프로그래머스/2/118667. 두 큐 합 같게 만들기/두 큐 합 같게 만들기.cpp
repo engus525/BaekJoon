@@ -22,7 +22,7 @@ int solution(vector<int> v1, vector<int> v2) {
     
     while (sum1 != sum2)
     {
-        if (answer == 2 * v1.size() + 2)
+        if (answer == 2 * v1.size() + 2 || (sum1 + sum2) % 2 == 1)
         {
             answer = -1;
             break;
