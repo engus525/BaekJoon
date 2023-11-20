@@ -8,7 +8,6 @@ typedef pair<long long, long long> pll;
 
 int n, m, start, fin, money;
 vector<vector<pii>> graph;
-int dist[11];
 bool visited[11];
 struct INFO
 {
@@ -46,12 +45,13 @@ int ijk()
 
     priority_queue<INFO, vector<INFO>, comp> pq;
     pq.push({0, start, 0});
-    dist[start] = 0;
+    visited[start] = true;
 
     while (!pq.empty())
     {
         auto [d1, now, maxM] = pq.top();
         pq.pop();
+        visited[now] = true;
 
         if (now == fin) ans = min(ans, maxM);
 
@@ -60,12 +60,13 @@ int ijk()
             auto [next, d2] = graph[now][i];
             int nd = d1 + d2;
 
-            if (dist[next] < nd) continue;
             if (nd > money) continue;
+            if (visited[next]) continue;
 
-            maxM = max(maxM, d2);
-            dist[next] = nd;
-            pq.push({nd, next, maxM});
+//            cout << "이 경로의 maxM = " << maxM << '\n';
+//            cout << now << " to " << next << " at " << d2 << ", and total " << nd << '\n';
+            int routeMax = max(maxM, d2);
+            pq.push({nd, next, routeMax});
         }
     }
 
@@ -74,8 +75,6 @@ int ijk()
 
 void solution()
 {
-    for (int i = 1; i <= n; i++) dist[i] = 2e9;
-
     int ans = ijk();
     (ans == 2e9) ? cout << -1 : cout << ans;
 }
