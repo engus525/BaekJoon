@@ -29,10 +29,11 @@ int findParkNum()
     return -1;
 }
 
-void calculateAns(int parkNum, int carNum)
+void parkProcess(int parkNum, int carNum)
 {
-    //cout << carNum << " parked at " << parkNum << '\n';
+    parkedAt[carNum] = parkNum;
     ans += rs[parkNum] * wk[carNum];
+    visited[parkNum] = true;
 }
 
 void solution()
@@ -53,11 +54,7 @@ void solution()
                 int car = q.front();
                 q.pop();
 
-                parkedAt[car] = parkedAt[order];
-                parkedAt[order] = 0;
-
-                calculateAns(parkedAt[car], car);
-                visited[parkedAt[car]] = true;
+                parkProcess(parkedAt[order], car);
             }
 
             parkedAt[order] = 0;
@@ -69,13 +66,7 @@ void solution()
 
         //없다면 입구 대기
         if (num == -1) q.emplace(order);
-        else
-        {
-            parkedAt[order] = num;
-
-            calculateAns(num, order);
-            visited[num] = true;
-        }
+        else parkProcess(num, order);
     }
 
     cout << ans;
