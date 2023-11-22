@@ -28,13 +28,11 @@ vector<int> solution(vector<vector<string>> places) {
     for (int i = 0; i < places.size(); i++)
     {
         bool good = true;
-        cout << "\n===============\n";
         for (int j = 0; j < places[i].size(); j++)
         {
             for (int k = 0; k < places[i][j].length(); k++)
             {
                 if (graph[i][j][k] != 'P') continue;
-                cout << j << " " << k << " !!\n";
                 
                 /* check1 */
                 for (int d = 0; d < 2; d++)
@@ -75,9 +73,6 @@ vector<int> solution(vector<vector<string>> places) {
                         
                         
                         if (graph[i][nx][ny] != 'P') continue;
-                        cout << j << " " << k << " -> " << nx << " " << ny << '\n';
-                        cout << x1 << " " << y1 << '\n';
-                        cout << x2 << " " << y2 << '\n';
                         if (graph[i][x1][y1] == 'O' || graph[i][x2][y2] == 'O') good = false;
                     }
                 }
