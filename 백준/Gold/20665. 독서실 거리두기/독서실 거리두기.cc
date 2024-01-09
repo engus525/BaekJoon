@@ -98,11 +98,10 @@ void solution()
 {
     sort(v.begin(), v.end(), comp);
 
-    int Ans = 720;
+    int ans = 720;
 
     for (auto T: v)
     {
-
         while (!pq.empty() && pq.top().first <= T.first)
         {
             visited[pq.top().second] = false;
@@ -110,15 +109,14 @@ void solution()
         }
 
         int bestSeat = getBestSeat();
-        if (bestSeat == p) Ans -= T.second - T.first;
+        if (bestSeat == p) ans -= T.second - T.first;
 
         visited[bestSeat] = true;
         pq.emplace(T.second, bestSeat);
 
-
     }
 
-    cout << Ans;
+    cout << ans;
 }
 
 int main()
