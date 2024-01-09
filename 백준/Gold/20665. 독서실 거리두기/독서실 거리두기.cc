@@ -80,7 +80,7 @@ int getBestSeat()
 
         }
     }
-//    cout << "mD = " << maxDist << '\n';
+
     if (maxDist == 0)
     {
         for (int i = 1; i <= n; i++)
@@ -90,7 +90,7 @@ int getBestSeat()
                 break;
             }
     }
-    //cout << "best : " << ((noPerson) ? 1 : bestSeat) << '\n';
+
     return ((noPerson) ? 1 : bestSeat);
 }
 
@@ -100,46 +100,24 @@ void solution()
 
     int Ans = 720;
 
-    int ans = v[0].first - 9 * 60;
-    int now = v[0].first;
     for (auto T: v)
     {
-        //cout << T.first << " " << T.second << '\n';
 
         while (!pq.empty() && pq.top().first <= T.first)
         {
-            if (!visited[p]) ans += pq.top().first - now;
-
-            now = pq.top().first;
-            //cout << now << " : " << ans << '\n';
             visited[pq.top().second] = false;
             pq.pop();
         }
 
         int bestSeat = getBestSeat();
         if (bestSeat == p) Ans -= T.second - T.first;
-        if (!visited[p]) ans += T.first - now;
-        //cout << now << " : " << ans << '\n';
 
-        now = T.first;
         visited[bestSeat] = true;
         pq.emplace(T.second, bestSeat);
 
-        //cout << now << " : " << ans << '\n';
 
     }
 
-    while (!pq.empty())
-    {
-        if (!visited[p]) ans += pq.top().first - now;
-
-        now = pq.top().first;
-        //cout << now << " : " << ans << '\n';
-        visited[pq.top().second] = false;
-        pq.pop();
-    }
-
-    ans += 21 * 60 - now;
     cout << Ans;
 }
 
