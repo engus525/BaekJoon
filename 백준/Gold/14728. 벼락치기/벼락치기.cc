@@ -25,15 +25,13 @@ void INPUT()
 
 void solution()
 {
-    int ans = 0;
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= t; j++)
         {
             if (j - v[i].first < 0) dp[i][j] = dp[i - 1][j];
             else dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - v[i].first] + v[i].second);
-            ans = max(ans, dp[i][j]);
         }
-    cout << ans;
+    cout << dp[n][t];
 }
 
 int main()
