@@ -19,19 +19,17 @@ void INPUT()
         string str; cin >> str;
         S.emplace(str);
     }
-    for (int i = 0; i < m; i++)
-    {
-        string str; cin >> str;
-        v.emplace_back(str);
-    }
 }
 
 void solution()
 {
     int ans = 0;
-    for (auto &str : v)
+    while (m--)
+    {
+        string str; cin >> str;
         if (S.find(str) != S.end())
             ans++;
+    }
     cout << ans;
 }
 
