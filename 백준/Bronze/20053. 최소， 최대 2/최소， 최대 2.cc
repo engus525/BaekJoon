@@ -22,15 +22,15 @@ void solution()
     while (t--)
     {
         int n; cin >> n;
-        vector<int> v;
+        int minV = 2e9, maxV = -2e9;
         for (int i = 0; i < n; i++)
         {
             int num; cin >> num;
-            v.emplace_back(num);
+            minV = min(minV, num);
+            maxV = max(maxV, num);
         }
-        sort(v.begin(), v.end());
 
-        cout << v[0] << " " << v[n - 1] <<  '\n';
+        cout << minV << " " << maxV <<  '\n';
     }
 }
 
