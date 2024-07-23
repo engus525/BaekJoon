@@ -19,10 +19,9 @@ void solution()
 {
     int ans = 10;
 
-    ll cri = 1;
+    int cri = 1;
     while (n >= cri * 2)
     {
-//        cout << "cri : " << cri << '\n';
         ans++;
         cri *= 2;
     }
