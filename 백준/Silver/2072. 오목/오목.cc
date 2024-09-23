@@ -105,7 +105,8 @@ void solution()
         board[x][y] = turn;
         if (isEnd(x, y))
         {
-            ans = (ans == -1) ? num : min(ans, num);
+            ans = num;
+            break;
         }
 
         if (turn == 1) turn = 2;
