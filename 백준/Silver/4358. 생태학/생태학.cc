@@ -18,23 +18,13 @@ void INPUT()
     IAMFAST
 }
 
-
 void solution()
 {
-    while (getline(cin, tree))
-    {
-//        if (tree == "end") break;
-        total++;
-        treeMap[tree]++;
-    }
-
-
+    while (getline(cin, tree)) total++, treeMap[tree]++;
+    
     cout << fixed; cout.precision(4);
     for (auto elem : treeMap)
-    {
-        double val = (elem.second * 100 / (double) total);
-        cout << elem.first << " " << val << '\n';
-    }
+        cout << elem.first << " " << (elem.second * 100 / (double) total) << '\n';
 }
 
 int main()
