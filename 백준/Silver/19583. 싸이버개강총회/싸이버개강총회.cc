@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <unordered_set>
 #include <string>
 #include <set>
 #include <algorithm>
@@ -9,7 +9,7 @@ using namespace std;
 typedef long long ll;
 
 string s, e, q;
-set<string> nameSet;
+unordered_set<string> nameSet;
 
 void INPUT()
 {
