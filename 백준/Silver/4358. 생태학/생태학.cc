@@ -32,7 +32,7 @@ void solution()
     cout << fixed; cout.precision(4);
     for (auto elem : treeMap)
     {
-        double val = (elem.second / (double) total) * 100;
+        double val = (elem.second * 100 / (double) total);
         cout << elem.first << " " << val << '\n';
     }
 }
