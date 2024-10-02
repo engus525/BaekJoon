@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unordered_set>
+#include <unordered_map>
 #include <string>
 #include <set>
 #include <algorithm>
@@ -10,6 +11,7 @@ typedef long long ll;
 
 string s, e, q;
 unordered_set<string> nameSet;
+unordered_map<string, bool> nameMap;
 
 void INPUT()
 {
@@ -26,13 +28,14 @@ void solution()
     string t, name;
     while (cin >> t >> name)
     {
-        if (t <= s) nameSet.emplace(name);
+        if (t <= s) nameMap.emplace(name, false);
         else if (e <= t && t <= q)
         {
-            auto it = nameSet.find(name);
-            if (it == nameSet.end()) continue;
+            auto it = nameMap.find(name);
+            if (it == nameMap.end()) continue;
+            if (nameMap[name]) continue;
             ans++;
-            nameSet.erase(it);
+            nameMap[name] = true;
         }
     }
     cout << ans;
