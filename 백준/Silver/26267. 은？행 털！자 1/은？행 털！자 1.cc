@@ -12,7 +12,7 @@ typedef long long ll;
 typedef pair<int, int> pii;
 
 ll n;
-map<ll, ll> M;
+unordered_map<ll, ll> M;
 
 void INPUT()
 {
