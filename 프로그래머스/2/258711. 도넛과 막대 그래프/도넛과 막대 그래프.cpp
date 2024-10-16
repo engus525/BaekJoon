@@ -88,13 +88,11 @@ vector<int> solution(vector<vector<int>> edges) {
         
         if (visited[i]) continue;
         auto result = bfs(i);
-        // cout << i << " : " << result.first << " " << result.second << '\n';
+        
         // 시작점으로 복귀 && 복귀와 동시에 queue 비어있음 -> 도넛
         if (result.first && !result.second) ans[1]++;
         // 시작점 복귀 && 복귀 시점에 queue 남아있음 -> 8자
         else if (result.first && result.second) ans[3]++;
-        // 시작점 복귀 X -> 막대
-        // else if (!result.first) ans[2]++;
     }
     
     
