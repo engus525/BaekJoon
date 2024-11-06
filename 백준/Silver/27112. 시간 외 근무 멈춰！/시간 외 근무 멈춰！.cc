@@ -36,16 +36,11 @@ void solution()
         while (need)
         {
             if (today > limit) break;
-            if (today % 7 < 5)
-            {
-                need--;
-            }
+            if (today % 7 < 5) need--;
             today++;
         }
 
-//        cout << limit << " over " << need << '\n';
         overtimeCnt += need;
-//        cout << "overCnt : " << overtimeCnt << "\n";
         if (overtimeCnt > limit + 1)
         {
             cout << -1;
@@ -55,8 +50,6 @@ void solution()
 
     cout << overtimeCnt;
 }
-// 2 5 5 5 5 x x 9 10 10
-// 6 6 10
 
 int main()
 {
