@@ -43,12 +43,6 @@ void solution()
     M.emplace("C-", 1);
     string ans;
 
-    // 첫 학기
-    string alpha;
-    alpha += str[0];
-    if (str.length() >= 2 && !isABC(str[1])) alpha += str[1];
-    int first = M[alpha];
-
     int before = 0;
     for (int i = 0; i < str.length(); i++)
     {
@@ -61,17 +55,17 @@ void solution()
         if (now <= 3) ans += "B";
         else if (now <= 5)
         {
-            if (i == 0 || before <= 3) ans += "D";
+            if (!i || before <= 3) ans += "D";
             else ans += "B";
         }
         else if (now <= 7)
         {
-            if (i == 0 || before <= 5) ans += "P";
+            if (!i || before <= 5) ans += "P";
             else ans += "D";
         }
         else if (now == 8)
         {
-            if (i == 0 || before <= 7) ans += "E";
+            if (!i || before <= 7) ans += "E";
             else ans += "P";
         }
         else ans += "E";
