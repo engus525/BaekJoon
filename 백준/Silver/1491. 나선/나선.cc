@@ -32,6 +32,7 @@ void Print()
 
 void end()
 {
+//    cout << "cnt : " << cnt << '\n';
     if (cnt == n * m)
     {
         Print();
@@ -44,13 +45,13 @@ void solution()
     int rotateCnt = 0;
     while (true)
     {
-        while (x < n - 1 - rotateCnt) x++, cnt++;
+        cnt += n - 1 - rotateCnt - x, x += n - 1 - rotateCnt - x;
         end();
-        while (y < m - 1 - rotateCnt) y++, cnt++;
+        cnt += m - 1 - rotateCnt - y, y += m - 1 - rotateCnt - y;
         end();
-        while (x > rotateCnt) x--, cnt++;
+        cnt += x - rotateCnt, x -= x - rotateCnt;
         end();
-        while (y > rotateCnt + 1) y--, cnt++;
+        cnt += y - (rotateCnt + 1), y -= y - (rotateCnt + 1);
         end();
 
         rotateCnt++;
