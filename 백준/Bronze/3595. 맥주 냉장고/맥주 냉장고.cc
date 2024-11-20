@@ -16,6 +16,7 @@ typedef pair<long long, long long> pll;
 
 ll n;
 ll a, b, c;
+vector<ll> v;
 
 void INPUT()
 {
@@ -26,23 +27,22 @@ void INPUT()
 
 void solution()
 {
-    ll minV = 2e18;
-    for (ll i = 1; i <= n; i++)
-    {
-        for (ll j = 1; j <= n; j++)
-        {
-            if (i * j > n) break;
-            for (ll k = 1; k <= n; k++)
-            {
-                if (i * j * k > n) break;
-                if (i * j * k != n) continue;
+    for (ll i = 1; i <= sqrt(n); i++)
+        if (!(n % i)) v.emplace_back(i), v.emplace_back(n / i);
 
-                ll calc = i * j + j * k + k * i;
-                if (minV > calc)
-                {
-                    minV = calc;
-                    a = i, b = j, c = k;
-                }
+    ll minV = 2e18;
+    for (ll i = 0; i < v.size(); i++)
+    {
+        for (ll j = 0; j < v.size(); j++)
+        {
+            ll k = n / v[i] / v[j];
+            if (v[i] * v[j] * k != n) continue;
+
+            ll calc = v[i] * v[j] + v[j] * k + k * v[i];
+            if (minV > calc)
+            {
+                minV = calc;
+                a = v[i], b = v[j], c = k;
             }
         }
     }
