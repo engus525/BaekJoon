@@ -25,20 +25,24 @@ void INPUT()
     cin >> n >> m;
     for (int i = 0; i < n; i++)
     {
-        int val; cin >> val;
+        int val;
+        cin >> val;
         v.emplace_back(val);
-        ps += val;
-        if (ps >= m)
-        {
-            ans = i + 1;
-            break;
-        }
     }
 }
 
 
 void solution()
 {
+    for (int i = v.size() - 1; i >= 0; i--)
+    {
+        ps += v[i];
+        if (ps >= m)
+        {
+            ans = i + 1;
+            break;
+        }
+    }
     if (ans) cout << ans;
     else cout << -1;
 }
