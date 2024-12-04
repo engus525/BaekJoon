@@ -14,7 +14,7 @@ typedef long long ll;
 typedef pair<int, int> pii;
 typedef pair<long long, long long> pll;
 
-double a, b;
+int a, b;
 
 void INPUT()
 {
@@ -24,8 +24,18 @@ void INPUT()
 
 void solution()
 {
-    cout << fixed; cout.precision(1000);
     cout << a / b;
+    a %= b;
+    a *= 10;
+    cout << ".";
+
+    for (int i = 0; i < 1000; i++)
+    {
+        cout << a / b;
+        a %= b;
+        a *= 10;
+        if (!a) break;
+    }
 }
 
 int main()
