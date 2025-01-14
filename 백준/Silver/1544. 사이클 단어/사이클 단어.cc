@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <map>
+#include <unordered_set>
 #include <set>
 #include <string>
 #include <algorithm>
@@ -15,62 +15,40 @@ typedef pair<int, int> pii;
 typedef pair<long long, long long> pll;
 
 int n;
-string str[51];
-bool isUnique[51];
+unordered_set<string> S;
 
 void INPUT()
 {
-    IAMFAST
-    cin >> n;
-    for (int i = 0; i < n; i++) cin >> str[i];
+  IAMFAST
+  cin >> n;
 }
 
 void solution()
 {
-    memset(isUnique, true, sizeof isUnique);
+  while (n--)
+  {
+    string str;
+    cin >> str;
 
-    int ans = n;
-    for (int i = 0; i < n; i++)
+    bool exist = false;
+    for (int i = 0; i < str.length(); i++)
     {
-        if (!isUnique[i]) continue;
-
-        for (int j = i + 1; j < n; j++)
-        {
-            if (str[i].length() != str[j].length()) continue;
-
-            int len = str[i].length();
-            bool isSameStr = false;
-            for (int idx = 0; idx < len; idx++)
-            {
-                bool allSame = true;
-                for (int mov = 0; mov < len; mov++)
-                {
-                    if (str[i][mov] != str[j][(idx + mov) % len])
-                    {
-                        allSame = false;
-                        break;
-                    }
-                }
-                if (allSame)
-                {
-                    isSameStr = true;
-                    break;
-                }
-            }
-            if (isSameStr)
-            {
-                isUnique[j] = false;
-                ans--;
-            }
-        }
+      if (S.count(str.substr(i) + str.substr(0, i)))
+      {
+        exist = true;
+        break;
+      }
     }
 
-    cout << ans;
+    if (!exist) S.emplace(str);
+  }
+
+  cout << S.size();
 }
 
 
 int main()
 {
-    INPUT();
-    solution();
+  INPUT();
+  solution();
 }
