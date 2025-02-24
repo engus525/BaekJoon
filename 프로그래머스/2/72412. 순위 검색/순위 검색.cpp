@@ -33,23 +33,14 @@ vector<int> solution(vector<string> info, vector<string> query) {
         ss >> a >> b >> c >> d >> score;
         int i1 = cti(a), i2 = cti(b), i3 = cti(c), i4 = cti(d);
         v[i1][i2][i3][i4].push_back(score);
-        for (int x = 0; x < 2; x++)
+        for (int x = 1; x < 16; x++)
         {
-            for (int y = 0; y < 2; y++)
-            {
-                for (int z = 0; z < 2; z++)
-                {
-                    for (int w = 0; w < 2; w++)
-                    {
-                        int n1 = i1, n2 = i2, n3 = i3, n4 = i4;
-                        if (x) n1 = 0;
-                        if (y) n2 = 0;
-                        if (z) n3 = 0;
-                        if (w) n4 = 0;
-                        if (x || y || z || w) v[n1][n2][n3][n4].push_back(score);
-                    }
-                }
-            }
+            int n1 = i1, n2 = i2, n3 = i3, n4 = i4;
+            if (x & (1 << 0)) n1 = 0;
+            if (x & (1 << 1)) n2 = 0;
+            if (x & (1 << 2)) n3 = 0;
+            if (x & (1 << 3)) n4 = 0;
+            v[n1][n2][n3][n4].push_back(score);
         }
     }
     
