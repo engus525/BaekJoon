@@ -18,8 +18,7 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
     {
         cnt[val]++;
         // 여벌 학생이 도난 당하면 빌려줄 수 없다.
-        if (cnt[val] == 2)
-            noRest[val] = true;
+        if (cnt[val] == 2) noRest[val] = true;
     }
     int idx = 0;
     
@@ -28,11 +27,11 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
         for (int j = 0; j < reserve.size(); j++)
         {
             if (noRest[reserve[j]]) continue;
+            // 도난 당했어도 여분 있으면 빌려주지 않는다.
             if (cnt[lost[i]] == 2) continue;
             
             if (reserve[j] - 1 == lost[i] || reserve[j] + 1 == lost[i])
             {
-                // cout << reserve[j] << " to " << lost[i] << '\n';
                 answer++;
                 noRest[reserve[j]] = true;
                 break;
@@ -43,6 +42,6 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
     // 여벌 없고 도난 안 당한 학생
     for (int i = 1; i <= n; i++)
         if (!cnt[i]) answer++;
-    // cout << answer << " " << reserve.size();
+
     return answer + reserve.size();
 }
