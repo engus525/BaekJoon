@@ -8,9 +8,10 @@ using namespace std;
 int start, now;
 bool visited[10];
 vector<int> order;
+vector<vector<int>> v;
 int answer = 0;
 
-void go(vector<vector<int>> &v)
+void go()
 {
     // cout << "Go!!!!\n";
     int ans = 0;
@@ -26,11 +27,11 @@ void go(vector<vector<int>> &v)
     answer = max(answer, ans);
 }
 
-void comb(vector<vector<int>> &v)
+void comb()
 {
     if (order.size() == v.size())
     {
-        go(v);
+        go();
     }
     
     for (int i = 0; i < v.size(); i++)
@@ -39,7 +40,7 @@ void comb(vector<vector<int>> &v)
         
         order.emplace_back(i);
         visited[i] = true;
-        comb(v);
+        comb();
         order.pop_back();
         visited[i] = false;
     }
@@ -47,9 +48,10 @@ void comb(vector<vector<int>> &v)
 }
 
 int solution(int k, vector<vector<int>> dun) {
+    v = dun;
     start = k;
     
-    comb(dun);
+    comb();
     
     return answer;
 }
