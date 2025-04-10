@@ -1,28 +1,17 @@
 #include <string>
 #include <vector>
-#include <queue>
+#include <algorithm>
 
 using namespace std;
-priority_queue<int> aQ, bQ;
 
 int solution(vector<int> A, vector<int> B) {
     int answer = 0;
-    for (int i = 0; i < A.size(); i++)
-        aQ.emplace(A[i]), bQ.emplace(B[i]);
-    
-    while (!aQ.empty() && !bQ.empty())
-    {
-        if (aQ.top() < bQ.top())
-        {
-            answer++;
-            aQ.pop(), bQ.pop();
-        }
-        else if (aQ.top() == bQ.top()) aQ.pop();
-        else if (aQ.top() > bQ.top())
-        {
-            aQ.pop();
-        }
-    }
+    sort(A.begin(), A.end());
+    sort(B.begin(), B.end());
+
+    int aIdx = 0;
+    for (int bIdx = 0; bIdx < B.size(); bIdx++)
+        if (A[aIdx] < B[bIdx]) answer++, aIdx++;
     
     return answer;
 }
