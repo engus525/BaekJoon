@@ -1,7 +1,6 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <queue>
 #include <map>
 
 using namespace std;
@@ -10,7 +9,6 @@ map<int, int> M;
 vector<int> solution(vector<string> v) {
     vector<int> answer;
     
-    int delMax = 0, delMin = 0, iCnt = 0;
     for (auto val : v)
     {
         char c = val[0];
