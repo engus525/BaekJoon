@@ -20,7 +20,7 @@ int solution(vector<int> v) {
         answer = max(dp1[i][0], dp1[i][1]);
     }
     
-    dp2[0][1] = v.back();
+    dp2[0][1] = v[0];
     for (int i = v.size() - 1; i > 0; i--)
     {
         dp2[i][0] = max(dp2[i + 1][0], dp2[i + 1][1]);
