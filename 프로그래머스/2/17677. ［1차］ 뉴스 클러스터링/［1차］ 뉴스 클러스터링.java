@@ -80,7 +80,7 @@ class Solution {
         
 //         System.out.println(interList.size());
 //         System.out.println(unionList.size());
-        if (unionList.size() == 0) return 0;
+        // if (unionList.size() == 0) return 0;
         return (int) ((interList.size() / (double) unionList.size()) * 65536);
     }
 }
