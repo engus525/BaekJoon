@@ -2,39 +2,23 @@ import java.util.*;
 
 class Solution {
     
-    String nowTime = "09:00";
-    String ans;
-    static Queue<String> q = new LinkedList<>();
+    int nowTime = 540;
+    int ans;
+    static Queue<Integer> q = new LinkedList<>();
 
     
-  public static String addTime(String time, int plus)
+  public static int toM(String time)
   {
-    int h = Integer.parseInt(time.substring(0, 2));
-    h += plus / 60;
-      if (h >= 24) return "";
-    int m = Integer.parseInt(time.substring(3, 5));
-    m += plus % 60;
-    if (m >= 60)
-    {
-      h++;
-      m -= 60;
-    }
-    else if (m < 0)
-    {
-      h--;
-      m = 59;
-    }
-    if (h < 10 && m < 10) return "0" + h + ":0" + m;
-    else if (h < 10) return "0" + h + ":" + m;
-    else if (m < 10) return h + ":0" + m;
-    else return h + ":" + m;
+      int h = Integer.parseInt(time.substring(0, 2));
+      int m = Integer.parseInt(time.substring(3, 5));
+      return h * 60 + m;
   }
     
     public String solution(int n, int t, int m, String[] timeV) {
 
     Arrays.sort(timeV);
     for (String time : timeV) {
-      q.offer(time);
+      q.offer(toM(time));
     }
 
     int N = n;
@@ -42,10 +26,10 @@ class Solution {
      // System.out.println("now " + nowTime);
 
       int cnt = 0;
-      while (!q.isEmpty() && q.element().compareTo(nowTime) <= 0)
+      while (!q.isEmpty() && q.element() <= nowTime)
       {
           if (n == 1 && cnt == m - 1) break;
-          String in = q.poll();
+          int in = q.poll();
           // System.out.println("in = " + in + " and n : " + n);
           cnt++;
          
@@ -56,29 +40,32 @@ class Solution {
         {
             if (q.isEmpty()) ans = nowTime;
             else {
-                if (q.element().compareTo(nowTime) <= 0) ans = addTime(q.element(), -1);
+                if (q.element() <= nowTime) ans = q.element() - 1;
                 else ans = nowTime;
             }
             break;
         }
 
-      nowTime = addTime(nowTime, t);
-        if (nowTime == "")
+        nowTime += t;
+        if (nowTime > 1440)
         {
-        
-            // System.out.println("막차! : +" + (N-1)*t);
-            ans = addTime("09:00", (N-1)*t);
+            ans = 540 + (N - 1) * t;
             break;
         }
-      if (nowTime.compareTo("09:00") >= 0)
-      {
-        n--;
-//        System.out.println("부릉!");
-      }
+        
+        if (nowTime >= 540)
+        {
+            n--;
+        }
     }
 
-
-    return ans;
+        
+        int H = ans / 60;
+        int M = ans % 60;
+        if (H < 10 && M < 10) return "0"+H+":"+"0"+M;
+        else if (H < 10) return "0"+H+":"+M;
+        else if (M < 10) return H+":"+"0"+M;
+        else return H+":"+M;
         
     }
 }
