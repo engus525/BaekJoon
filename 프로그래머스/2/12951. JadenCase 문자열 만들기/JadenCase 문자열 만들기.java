@@ -10,10 +10,10 @@ class Solution {
         for (int i = 0; i < s.length(); i++)
         {
             char c = s.charAt(i);
-            if (i == 0 && 'a' <= c && c <= 'z')
-                ans.append(String.valueOf((char) (c - 'a' + 'A')));
-            else if (i > 0 && s.charAt(i - 1) == ' ' && 'a' <= c && c <= 'z')
-                ans.append(String.valueOf((char) (c - 'a' + 'A')));
+            if (i == 0)
+                ans.append(String.valueOf(Character.toUpperCase(c)));
+            else if (i > 0 && s.charAt(i - 1) == ' ' && Character.isLowerCase(c))
+                ans.append(String.valueOf(Character.toUpperCase(c)));
             else ans.append(c);
         }
         
