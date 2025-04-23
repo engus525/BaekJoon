@@ -15,13 +15,13 @@ typedef long long ll;
 typedef pair<int, int> pii;
 
 int t, n;
-unordered_set<int> S;
 struct Pos
 {
     int x, y, r;
 };
 vector<Pos> v;
 int parent[3001];
+int ans;
 
 void INPUT()
 {
@@ -41,8 +41,9 @@ void Union(int x, int y)
    x = Find(x);
    y = Find(y);
 
-   for (int i = 1; i <= n; i++)
-      if (parent[i] == y) parent[i] = x;
+   if (x == y) return;
+   ans--;
+   parent[y] = x;
 }
 
 bool close(int i, int j)
@@ -57,9 +58,9 @@ void solution()
    while (t--)
    {
       cin >> n;
+      ans = n;
       for (int i = 1; i <= n; i++) parent[i] = i;
       v.clear();
-      S.clear();
 
       for (int i = 1; i <= n; i++)
       {
@@ -72,9 +73,7 @@ void solution()
          for (int j = i + 1; j < n; j++)
             if (close(i, j)) Union(i+1, j+1);
 
-      for (int k = 1; k <= n; k++)
-         S.emplace(parent[k]);
-      cout << S.size() << '\n';
+      cout << ans << '\n';
 
    }
 
