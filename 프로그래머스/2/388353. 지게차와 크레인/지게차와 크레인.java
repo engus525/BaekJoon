@@ -14,6 +14,29 @@ class Solution {
     };
     static int ans = 0;
     
+    public void bfs() {
+        // set 'x'
+        boolean[][] visited = new boolean[55][55];
+        Queue<Node> q = new LinkedList<>();
+        q.add(new Node(0,0));
+        visited[0][0] = true;
+        while (!q.isEmpty()) {
+            Node now = q.poll();
+            
+            for (int i = 0; i < 4; i++) {
+                int nx = now.x + dir[i][0];
+                int ny = now.y + dir[i][1];
+                if (nx < 0 || ny < 0 || nx > n + 1 || ny > m + 1) continue;
+                if (visited[nx][ny]) continue;
+                if (graph[nx][ny] != 'o' && graph[nx][ny] != 'x') continue;
+                
+                q.add(new Node(nx, ny));
+                visited[nx][ny] = true;
+                graph[nx][ny] = 'x';
+            }
+        }
+    }
+    
     public boolean isEdge(int x, int y) {
         for (int i = 0; i < 4; i++) {
             int nx = x + dir[i][0];
@@ -47,32 +70,7 @@ class Solution {
         }
         
         // 일괄 제거
-        for (Node node : xList) {
-            // if (isEdge(node.x, node.y)) graph[node.x][node.y] = 'x';
-            // else graph[node.x][node.y] = 'o';
-            graph[node.x][node.y] = 'o';
-        }
-        
-        // 'x' BFS
-        boolean[][] visited = new boolean[55][55];
-        Queue<Node> q = new LinkedList<>();
-        q.add(new Node(0,0));
-        visited[0][0] = true;
-        while (!q.isEmpty()) {
-            Node now = q.poll();
-            
-            for (int i = 0; i < 4; i++) {
-                int nx = now.x + dir[i][0];
-                int ny = now.y + dir[i][1];
-                if (nx < 0 || ny < 0 || nx > n + 1 || ny > m + 1) continue;
-                if (visited[nx][ny]) continue;
-                if (graph[nx][ny] != 'o' && graph[nx][ny] != 'x') continue;
-                
-                q.add(new Node(nx, ny));
-                visited[nx][ny] = true;
-                graph[nx][ny] = 'x';
-            }
-        }
+        for (Node node : xList) graph[node.x][node.y] = 'o';
         
     }
     
@@ -98,13 +96,8 @@ class Solution {
             // 크레인
             else out(target, false);
             
-//             for (int i = 1; i <= n; i++) {
-//                 for (int j = 1; j <= m; j++) {
-//                     System.out.print(graph[i][j] + " ");
-                
-//                 }System.out.println();
-                
-//             }System.out.println("=======");
+            bfs();
+            
         }
         
         
