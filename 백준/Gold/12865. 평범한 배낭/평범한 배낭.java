@@ -9,7 +9,7 @@ public class Main {
   static StringTokenizer st;
   static int n, k;
   static int[][] thing = new int[101][2];
-  static int[][] dp = new int[101][100001];
+  static int[] dp = new int[100001];
 
 
   public static void main(String[] args) throws Exception {
@@ -27,16 +27,15 @@ public class Main {
 
     //logic start
     for (int i = 1; i <= n; i++) {
-      for (int j = 1; j <= k; j++) {
-        dp[i][j] = dp[i - 1][j];
-        if (j - thing[i][0] >= 0) dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - thing[i][0]] + thing[i][1]);
+      for (int j = k; j >= 0; j--) {
+        if (j - thing[i][0] >= 0) dp[j] = Math.max(dp[j], dp[j - thing[i][0]] + thing[i][1]);
       }
-//      for (int j = 1; j <= k; j++) System.out.print(dp[i][j] + " ");
+//      for (int j = 1; j <= k; j++) System.out.print(dp[j] + " ");
 //      System.out.println();
     }
 
 
-    ansStr.append(dp[n][k]);
+    ansStr.append(dp[k]);
     bw.write(ansStr.toString());
     bw.flush();
   }
