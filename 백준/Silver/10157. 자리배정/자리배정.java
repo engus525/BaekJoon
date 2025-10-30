@@ -15,40 +15,28 @@ public class Main {
     m = Integer.parseInt(st.nextToken());
     n = Integer.parseInt(st.nextToken());
     target = Integer.parseInt(br.readLine());
-
-    int l = 1, r = m, d = 1, u = n;
-    int order = 1;
-    while (l <= r && d <= u) {
-//      System.out.println(l + " " + r + " " + d + " " + u);
-      for (int i = d; i < u; i++) graph[i][l] = order++;
-      if (order > target) break;
-      for (int i = l; i < r; i++) graph[u][i] = order++;
-      if (order > target) break;
-      for (int i = u; i > d; i--) graph[i][r] = order++;
-      if (order > target) break;
-      for (int i = r; i > l; i--) graph[d][i] = order++;
-      if (order > target) break;
-      if (l == r && d == u) graph[d][l] = order;
-      if (order > target) break;
-      l++;
-      r--;
-      d++;
-      u--;
-
+    if (target > m * n) {
+      System.out.print(0);
+      return;
     }
 
-    for (int i = 1; i <= n; i++) {
-      for (int j = 1; j <= m; j++) {
-        if (graph[i][j] == target) {
-          System.out.println(j + " " + i);
-          return;
-        }
-//        System.out.print(graph[i][j] + " ");
+    int x = n, y = 1, d = 0;
+    int[][] dir = {{-1,0},{0,1},{1,0},{0,-1}};
+    int order = 0;
+    while (++order < target) {
+      graph[x][y] = order;
+      int nx = x + dir[d][0];
+      int ny = y + dir[d][1];
+      if (nx < 1 || ny < 1 || nx > n || ny > m || graph[nx][ny] > 0) {
+        d = (d + 1) % 4;
+        nx = x + dir[d][0];
+        ny = y + dir[d][1];
       }
-//      System.out.println();
+
+      x = nx; y = ny;
     }
 
-    System.out.println(0);
+    System.out.println(y + " " + (n - x + 1));
   }
 
 
